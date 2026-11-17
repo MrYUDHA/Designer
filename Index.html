@@ -1,4 +1,3 @@
-</html>
  <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
@@ -59,7 +58,6 @@
             font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* Kanvas Latar Belakang Api 3D (Fixed di belakang konten, pointer-events none agar interaksi halaman tetap berfungsi) */
         #bg {
             position: fixed;
             inset: 0;
@@ -169,21 +167,16 @@
         const NOMOR_WHATSAPP = "6285820289288";
     </script>
 
-    <!-- =================================================================== -->
-    <!-- KANVAS ANIMASI API 3D LATAR BELAKANG                                -->
-    <!-- =================================================================== -->
+    <!-- Kanvas Animasi Api 3D -->
     <canvas id="bg" aria-hidden="true"></canvas>
 
-    <!-- =================================================================== -->
-    <!-- HALAMAN PERTAMA: YUDHA STUDIO HERO UTAMA                              -->
-    <!-- =================================================================== -->
+    <!-- Halaman Pertama: Hero Utama -->
     <section
         id="yudha-hero"
         aria-label="YUDHA STUDIO Hero"
         class="content-layer relative w-full min-h-screen overflow-hidden bg-transparent flex flex-col justify-between"
     >
         <div class="relative z-10 w-full min-h-screen px-6 sm:px-12 lg:px-16 py-6 flex flex-col justify-between">
-            <!-- Top Navigation Bar -->
             <header class="w-full flex items-center justify-between pt-1">
                 <a
                     href="#"
@@ -209,7 +202,6 @@
                         <i data-lucide="arrow-down" class="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1"></i>
                     </a>
 
-                    <!-- Mobile Drawer Hamburger Button -->
                     <button
                         type="button"
                         id="mobile-menu-open"
@@ -223,7 +215,6 @@
                 </div>
             </header>
 
-            <!-- Main Hero Copy -->
             <main class="w-full my-auto py-12 lg:py-16">
                 <div class="max-w-xl lg:max-w-[540px]">
                     <div class="inline-flex items-center gap-2 mb-5 sm:mb-6">
@@ -279,11 +270,8 @@
         </div>
     </section>
 
-    <!-- =================================================================== -->
-    <!-- HALAMAN KEDUA & KATALOG (FULL-WIDTH PAGE BAWAH)                      -->
-    <!-- =================================================================== -->
-    <div class="content-layer bg-white/90 backdrop-blur-md pt-6 border-t border-slate-200">
-        <!-- Sticky Navbar YUDHA STUDIO -->
+    <!-- Halaman Katalog & Konten -->
+    <div class="content-layer bg-white/95 backdrop-blur-md pt-6 border-t border-slate-200">
         <header class="sticky top-0 z-40 px-4 sm:px-6 pt-4">
             <nav class="max-w-7xl mx-auto bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl px-4 sm:px-6 py-3.5 flex items-center justify-between shadow-lg shadow-slate-200/50">
                 <a href="#yudha-hero" class="flex items-center gap-3 group">
@@ -322,7 +310,6 @@
             </nav>
         </header>
 
-        <!-- Hero Katalog Section -->
         <section class="py-20 px-4 sm:px-6 text-center">
             <div class="max-w-4xl mx-auto space-y-6">
                 <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-red-200 text-red-600 text-xs font-semibold tracking-wide shadow-sm">
@@ -349,25 +336,10 @@
                         <span class="text-orange-500">🍔</span>
                     </a>
                 </div>
-
-                <div class="grid grid-cols-3 gap-4 pt-6 border-t border-slate-200/60 max-w-lg mx-auto bg-white/80 backdrop-blur-sm p-4 rounded-2xl shadow-sm">
-                    <div>
-                        <div class="text-2xl sm:text-3xl font-black text-slate-900">17</div>
-                        <div class="text-xs text-slate-600">Desain Eksklusif</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl sm:text-3xl font-black text-red-600">-5%</div>
-                        <div class="text-xs text-slate-600">Di Bawah Harga Pasar</div>
-                    </div>
-                    <div>
-                        <div class="text-2xl sm:text-3xl font-black text-emerald-600">100%</div>
-                        <div class="text-xs text-slate-600">Responsif & SEO Ready</div>
-                    </div>
-                </div>
             </div>
         </section>
 
-        <!-- Section Sorotan #11 (Burger & Fast Casual) -->
+        <!-- Section Sorotan #11 -->
         <section id="sorotan-burger" class="py-14 px-4 sm:px-6 bg-white/95 backdrop-blur-md">
             <div class="max-w-7xl mx-auto">
                 <div class="reveal-3d bg-gradient-to-br from-slate-50/95 via-white/95 to-orange-50/90 backdrop-blur-md border border-orange-200 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
@@ -380,97 +352,11 @@
                                 YUDHA STUDIO — Edisi Burger & Fast Casual
                             </h2>
                             <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-                                Dirancang khusus untuk bisnis kuliner modern berbasis profesional design, kedai burger, kafe, hingga <em>cloud kitchen</em>. Mengusung tema <strong>Warm Appetizing Cream & Orange</strong> yang terbukti secara psikologis meningkatkan nafsu makan dan konversi pemesanan langsung.
+                                Dirancang khusus untuk bisnis kuliner modern berbasis profesional design, kedai burger, kafe, hingga <em>cloud kitchen</em>.
                             </p>
-
-                            <ul class="space-y-2.5 text-sm text-slate-700">
-                                <li class="flex items-start gap-2.5">
-                                    <span class="text-orange-500 font-bold mt-0.5">✓</span>
-                                    <span><strong>Katalog Menu 3 Kolom Interaktif:</strong> Foto hidangan <em>close-up</em>, harga transparan, dan deskripsi komposisi bahan.</span>
-                                </li>
-                                <li class="flex items-start gap-2.5">
-                                    <span class="text-orange-500 font-bold mt-0.5">✓</span>
-                                    <span><strong>Fitur Direct Order Bag:</strong> Keranjang belanja bawaan untuk pesanan <em>delivery</em> maupun <em>take-away</em>.</span>
-                                </li>
-                                <li class="flex items-start gap-2.5">
-                                    <span class="text-orange-500 font-bold mt-0.5">✓</span>
-                                    <span><strong>Halaman Cerita Brand & Lokasi Cabang:</strong> Navigasi lengkap (Menu, Our Story, Locations).</span>
-                                </li>
-                            </ul>
-
-                            <div class="pt-3 flex flex-wrap items-center gap-5">
-                                <div>
-                                    <span class="text-xs text-slate-400 block">Harga Pasar: <del class="text-slate-400">Rp 4.800.000</del></span>
-                                    <div class="flex items-baseline gap-2">
-                                        <span class="text-2xl sm:text-3xl font-black text-orange-600">Rp 4.560.000</span>
-                                        <span class="text-xs font-bold bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-md">Hemat Rp 240.000</span>
-                                    </div>
-                                </div>
-                                <button onclick="bukaModalPesan(11)" class="btn-3d bg-orange-600 hover:bg-orange-700 text-white font-extrabold px-6 py-3.5 rounded-2xl text-sm shadow-lg shadow-orange-600/30 flex items-center gap-2">
-                                    <span>Pesan Template #11 Sekarang</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="lg:col-span-6 perspective-container">
-                            <div class="card-3d bg-[#FAF6EE] text-zinc-900 rounded-2xl p-5 sm:p-6 border border-orange-200 shadow-xl">
-                                <div class="card-glare"></div>
-                                <div class="flex items-center justify-between pb-4 border-b border-orange-200/70">
-                                    <div class="flex items-center gap-2">
-                                        <span class="text-xl">🍔</span>
-                                        <span class="font-black text-orange-600 tracking-tight text-sm sm:text-base">YUDHA STUDIO X</span>
-                                    </div>
-                                    <div class="hidden sm:flex items-center gap-4 text-[11px] font-bold text-zinc-700">
-                                        <span>MENU</span>
-                                        <span>OUR STORY</span>
-                                        <span>LOCATIONS</span>
-                                    </div>
-                                    <span class="bg-orange-600 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 rounded-full shadow">
-                                        ORDER BAG (0)
-                                    </span>
-                                </div>
-
-                                <div class="text-center my-5">
-                                    <span class="text-[10px] font-extrabold tracking-widest text-orange-600 uppercase">OUR SIGNATURE BURGERS</span>
-                                    <h4 class="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 mt-0.5">CHOOSE YOUR FAVORITE</h4>
-                                </div>
-
-                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                                    <div class="bg-white rounded-xl p-3 border border-orange-100 shadow-sm">
-                                        <div class="h-24 rounded-lg overflow-hidden">
-                                            <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80" alt="Burger" class="w-full h-full object-cover">
-                                        </div>
-                                        <div class="flex items-center justify-between mt-2.5">
-                                            <span class="font-extrabold text-xs text-zinc-900">The Double O.G.</span>
-                                            <span class="font-black text-xs text-orange-600">$12.50</span>
-                                        </div>
-                                        <p class="text-[10px] text-zinc-500 mt-1 leading-snug">Double wagyu patty, double cheddar, caramelized onions.</p>
-                                    </div>
-
-                                    <div class="bg-white rounded-xl p-3 border border-orange-100 shadow-sm">
-                                        <div class="h-24 rounded-lg overflow-hidden">
-                                            <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=400&q=80" alt="Burger" class="w-full h-full object-cover">
-                                        </div>
-                                        <div class="flex items-center justify-between mt-2.5">
-                                            <span class="font-extrabold text-xs text-zinc-900">Truffle Mushroom</span>
-                                            <span class="font-black text-xs text-orange-600">$14.00</span>
-                                        </div>
-                                        <p class="text-[10px] text-zinc-500 mt-1 leading-snug">Single wagyu patty, sautéed wild mushrooms, truffle aioli.</p>
-                                    </div>
-
-                                    <div class="bg-white rounded-xl p-3 border border-orange-100 shadow-sm">
-                                        <div class="h-24 rounded-lg overflow-hidden">
-                                            <img src="https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?auto=format&fit=crop&w=400&q=80" alt="Burger" class="w-full h-full object-cover">
-                                        </div>
-                                        <div class="flex items-center justify-between mt-2.5">
-                                            <span class="font-extrabold text-xs text-zinc-900">Spicy Diablo</span>
-                                            <span class="font-black text-xs text-orange-600">$13.50</span>
-                                        </div>
-                                        <p class="text-[10px] text-zinc-500 mt-1 leading-snug">Jalapeño relish, ghost pepper cheese, crispy beef bacon.</p>
-                                    </div>
-                                </div>
-                            </div>
+                            <button onclick="bukaModalPesan(11)" class="btn-3d bg-orange-600 hover:bg-orange-700 text-white font-extrabold px-6 py-3.5 rounded-2xl text-sm shadow-lg shadow-orange-600/30 flex items-center gap-2">
+                                <span>Pesan Template #11 Sekarang</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -484,92 +370,19 @@
                     <div>
                         <span class="text-xs font-bold uppercase tracking-widest text-red-600">ARSIP LENGKAP 2026</span>
                         <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">Katalog 17 Template Website</h2>
-                        <p class="text-slate-600 text-sm sm:text-base mt-2">Arahkan kursor atau sentuh kartu untuk melihat efek kemiringan 3D & pratinjau desain.</p>
                     </div>
-
                     <div class="relative w-full md:w-72">
                         <input type="text" id="input-cari" placeholder="Cari nama atau kategori..." 
-                            class="w-full bg-white/90 backdrop-blur-sm border border-slate-300 focus:border-red-500 rounded-xl pl-10 pr-4 py-3 text-sm text-slate-900 placeholder-slate-400 outline-none transition-colors shadow-sm">
-                        <svg class="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
+                            class="w-full bg-white/90 backdrop-blur-sm border border-slate-300 focus:border-red-500 rounded-xl px-4 py-3 text-sm text-slate-900 outline-none shadow-sm">
                     </div>
                 </div>
-
-                <!-- Filter Kategori -->
-                <div id="filter-container" class="flex flex-wrap items-center gap-2.5 mb-10">
-                    <button data-kategori="Semua" class="filter-btn btn-3d active bg-red-500 text-white font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm">
-                        Semua (17)
-                    </button>
-                    <button data-kategori="Teknologi & Profesional Design" class="filter-btn btn-3d bg-white/90 hover:bg-slate-100 text-slate-700 border border-slate-200 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm">
-                        Teknologi & Profesional Design
-                    </button>
-                    <button data-kategori="Bisnis & Korporat" class="filter-btn btn-3d bg-white/90 hover:bg-slate-100 text-slate-700 border border-slate-200 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm">
-                        Bisnis & Korporat
-                    </button>
-                    <button data-kategori="Kuliner & Retail" class="filter-btn btn-3d bg-white/90 hover:bg-slate-100 text-slate-700 border border-slate-200 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm">
-                        Kuliner & Retail
-                    </button>
-                    <button data-kategori="Arsitektur & Properti" class="filter-btn btn-3d bg-white/90 hover:bg-slate-100 text-slate-700 border border-slate-200 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm">
-                        Arsitektur & Properti
-                    </button>
-                    <button data-kategori="Kreatif & Galeri" class="filter-btn btn-3d bg-white/90 hover:bg-slate-100 text-slate-700 border border-slate-200 font-semibold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-sm">
-                        Kreatif & Galeri
-                    </button>
-                </div>
-
-                <div id="grid-katalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 perspective-container">
-                    <!-- Diisi via JS -->
-                </div>
-
-                <div id="kosong-state" class="hidden text-center py-16 bg-white/90 backdrop-blur-sm border border-slate-200 rounded-3xl shadow-sm">
-                    <p class="text-lg font-bold text-slate-700">Tidak ada template yang cocok dengan pencarian Anda.</p>
-                    <button onclick="resetFilter()" class="btn-3d mt-4 bg-red-500 text-white font-bold px-5 py-2.5 rounded-xl text-sm">
-                        Tampilkan Semua 17 Template
-                    </button>
-                </div>
+                <div id="grid-katalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 perspective-container"></div>
             </div>
         </section>
 
-        <!-- Keunggulan & Fasilitas -->
-        <section id="keunggulan" class="py-16 px-4 sm:px-6 border-t border-slate-200 bg-white/90 backdrop-blur-md">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center max-w-2xl mx-auto mb-12 reveal-3d">
-                    <span class="text-xs font-bold uppercase tracking-widest text-red-600">STANDAR KUALITAS YUDHA STUDIO</span>
-                    <h2 class="text-3xl font-black text-slate-900 mt-1">Setiap Paket Sudah Termasuk</h2>
-                    <p class="text-slate-600 text-sm mt-2">Harga sudah dipotong 5% lebih hemat tanpa mengurangi fitur premium sedikit pun.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                    <div class="reveal-3d bg-slate-50/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-sm">
-                        <div class="w-11 h-11 rounded-xl bg-red-100 text-red-600 flex items-center justify-center text-xl font-bold mb-4">⚡</div>
-                        <h3 class="font-bold text-slate-900 text-base">Performa & Animasi 3D</h3>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Kode bersih, ringan, dan dilengkapi mikro-interaksi halus di desktop maupun ponsel.</p>
-                    </div>
-                    <div class="reveal-3d bg-slate-50/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-sm">
-                        <div class="w-11 h-11 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold mb-4">🌐</div>
-                        <h3 class="font-bold text-slate-900 text-base">Gratis Domain & SSL</h3>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Termasuk domain pilihan (.com / .id) tahun pertama dan sertifikat keamanan HTTPS.</p>
-                    </div>
-                    <div class="reveal-3d bg-slate-50/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-sm">
-                        <div class="w-11 h-11 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold mb-4">🎨</div>
-                        <h3 class="font-bold text-slate-900 text-base">Kustomisasi Identitas</h3>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Penyesuaian penuh warna brand, logo, foto produk, hingga teks promosi bisnis Anda.</p>
-                    </div>
-                    <div class="reveal-3d bg-slate-50/90 backdrop-blur-sm border border-slate-200 rounded-2xl p-6 shadow-sm">
-                        <div class="w-11 h-11 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center text-xl font-bold mb-4">💬</div>
-                        <h3 class="font-bold text-slate-900 text-base">Integrasi WhatsApp Langsung</h3>
-                        <p class="text-xs text-slate-600 mt-2 leading-relaxed">Tombol pemesanan atau konsultasi langsung terhubung ke nomor WhatsApp admin Anda.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Footer / Kontak -->
         <footer class="border-t border-slate-200 py-14 px-4 sm:px-6 text-center bg-white/95 backdrop-blur-md">
             <div class="max-w-7xl mx-auto space-y-4">
                 <h2 class="text-2xl font-black text-slate-900">Ingin Konsultasi Pesanan Khusus?</h2>
-                <p class="text-slate-600 text-sm">Klik tombol di bawah untuk langsung terhubung ke WhatsApp YUDHA STUDIO.</p>
                 <div>
                     <a id="link-wa-footer" class="btn-3d inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-8 py-4 rounded-2xl text-sm shadow-lg shadow-emerald-600/20" href="#" target="_blank">
                         Chat via WhatsApp Langsung
@@ -580,687 +393,90 @@
         </footer>
     </div>
 
-    <!-- ===================================================================== -->
-    <!-- MOBILE SLIDE-OVER NAVIGATION DRAWER                                   -->
-    <!-- ===================================================================== -->
-    <div
-        id="mobile-drawer"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Mobile Navigation"
-        class="fixed inset-0 z-50 hidden"
-    >
-        <div id="mobile-drawer-backdrop" class="fixed inset-0 bg-charcoal/40 backdrop-blur-sm transition-opacity duration-300 opacity-0"></div>
-        <div
-            id="mobile-drawer-panel"
-            class="fixed inset-y-0 right-0 w-full max-w-xs bg-cream-soft border-l border-cream-border p-6 flex flex-col justify-between shadow-2xl transform translate-x-full transition-transform duration-300 ease-out"
-        >
-            <div>
-                <div class="flex items-center justify-between pb-6 border-b border-cream-border">
-                    <a href="#" class="text-2xl font-extrabold tracking-tight text-charcoal">
-                        YUDHA STUDIO<span class="text-accent">.</span>
-                    </a>
-                    <button
-                        type="button"
-                        id="mobile-menu-close"
-                        aria-label="Close navigation menu"
-                        class="p-2 rounded-full border border-cream-border bg-cream text-charcoal hover:bg-charcoal hover:text-cream transition-colors"
-                    >
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-                <nav class="mt-8 flex flex-col gap-5">
-                    <a href="#yudha-hero" class="mobile-nav-link text-xl font-semibold text-charcoal hover:text-accent transition-colors">Overview</a>
-                    <a href="#katalog" class="mobile-nav-link text-xl font-semibold text-charcoal hover:text-accent transition-colors">17 Katalog Website</a>
-                    <a href="#sorotan-burger" class="mobile-nav-link text-xl font-semibold text-charcoal hover:text-accent transition-colors">Sorotan #11</a>
-                    <a href="#keunggulan" class="mobile-nav-link text-xl font-semibold text-charcoal hover:text-accent transition-colors">Garansi & Fasilitas</a>
-                </nav>
-            </div>
-            <div class="pt-6 border-t border-cream-border">
-                <a
-                    href="#katalog"
-                    class="mobile-nav-link w-full inline-flex items-center justify-center gap-2 rounded-full bg-charcoal px-6 py-3.5 text-sm font-semibold text-cream hover:bg-accent transition-colors"
-                >
-                    <span>Pilih Template</span>
-                    <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- ===================================================================== -->
-    <!-- FULLSCREEN INTERACTIVE SHOWREEL MODAL                                 -->
-    <!-- ===================================================================== -->
-    <div
-        id="showreel-modal"
-        role="dialog"
-        aria-modal="true"
-        aria-labelledby="showreel-modal-title"
-        class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-8"
-    >
-        <div id="showreel-backdrop" class="fixed inset-0 bg-charcoal/85 backdrop-blur-md transition-opacity duration-300 opacity-0"></div>
-        <div
-            id="showreel-content"
-            class="relative z-10 w-full max-w-5xl rounded-2xl sm:rounded-3xl overflow-hidden bg-charcoal border border-white/15 shadow-2xl transform scale-95 opacity-0 transition-all duration-300"
-        >
-            <div class="flex items-center justify-between px-5 sm:px-6 py-4 bg-charcoal/95 border-b border-white/10">
-                <div class="flex items-center gap-3">
-                    <span class="w-2.5 h-2.5 rounded-full bg-accent"></span>
-                    <h2 id="showreel-modal-title" class="text-sm sm:text-base font-semibold text-cream tracking-tight">
-                        YUDHA STUDIO — 2026 Showreel
-                    </h2>
-                </div>
-                <button
-                    type="button"
-                    id="close-showreel-btn"
-                    aria-label="Close showreel modal"
-                    class="inline-flex items-center gap-1.5 rounded-full bg-white/10 hover:bg-accent px-3.5 py-1.5 text-xs sm:text-sm font-medium text-cream transition-colors duration-200"
-                >
-                    <span>Close</span>
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-            <div class="relative aspect-video w-full bg-black">
-                <video
-                    id="showreel-video"
-                    class="w-full h-full object-cover"
-                    controls
-                    playsinline
-                    preload="metadata"
-                >
-                    <source
-                        src="https://strvid.nyc3.cdn.digitaloceanspaces.com/motionsite/creative_studio_video.mp4"
-                        type="video/mp4"
-                    />
-                    Your browser does not support the video tag.
-                </video>
-            </div>
-        </div>
-    </div>
-
-    <!-- MODAL PEMESANAN DENGAN FORMULIR & LAMPIRAN FILE -->
+    <!-- Modal Pemesanan -->
     <div id="modal-pemesanan" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
         <div class="bg-white border border-slate-200 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
             <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <div>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-red-600">FORMULIR PEMESANAN & LAMPIRAN DATA</span>
-                    <h3 class="text-lg font-black text-slate-900">Pesan Website — YUDHA STUDIO</h3>
-                </div>
-                <button onclick="tutupModal()" class="w-9 h-9 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 flex items-center justify-center font-bold">✕</button>
+                <h3 class="text-lg font-black text-slate-900">Pesan Website — YUDHA STUDIO</h3>
+                <button onclick="tutupModal()" class="w-9 h-9 rounded-xl bg-slate-200 hover:bg-slate-300 font-bold">✕</button>
             </div>
-
             <div class="p-6 overflow-y-auto space-y-6">
-                <div>
-                    <div class="flex items-center justify-between mb-2.5">
-                        <label class="text-xs font-bold uppercase tracking-wider text-slate-500">Template Pilihan</label>
-                        <button onclick="tutupModal()" class="text-xs text-red-600 hover:underline font-semibold">+ Tambah Template Lain</button>
-                    </div>
-                    <div id="daftar-item-modal" class="space-y-2.5"></div>
-                </div>
-
-                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 space-y-2 text-sm">
-                    <div class="flex justify-between text-slate-500">
-                        <span>Total Harga Pasar Normal</span>
-                        <span id="modal-harga-pasar" class="line-through">Rp 0</span>
-                    </div>
-                    <div class="flex justify-between text-emerald-600 font-semibold">
-                        <span>Diskon Spesial YUDHA STUDIO (5%)</span>
-                        <span id="modal-total-hemat">- Rp 0</span>
-                    </div>
-                    <div class="pt-2 border-t border-slate-200 flex justify-between items-baseline">
-                        <span class="font-bold text-slate-900">Total Investasi Akhir</span>
-                        <span id="modal-harga-akhir" class="text-xl sm:text-2xl font-black text-red-600">Rp 0</span>
-                    </div>
-                </div>
-
-                <!-- Formulir Pesanan & Upload File Data Website -->
+                <div id="daftar-item-modal" class="space-y-2.5"></div>
                 <form id="form-order" onsubmit="kirimPesanan(event)" class="space-y-4">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nama Lengkap Pemesan *</label>
-                            <input type="text" id="input-nama" required placeholder="Contoh: Budi Santoso"
-                                class="w-full bg-slate-50 border border-slate-300 focus:border-red-500 rounded-xl px-4 py-3 text-sm text-slate-900 outline-none">
-                        </div>
-                        <div>
-                            <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nomor WhatsApp / Kontak *</label>
-                            <input type="text" id="input-kontak" required placeholder="Contoh: 081234567890"
-                                class="w-full bg-slate-50 border border-slate-300 focus:border-red-500 rounded-xl px-4 py-3 text-sm text-slate-900 outline-none">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nama Bisnis / Brand Anda *</label>
-                        <input type="text" id="input-bisnis" required placeholder="Contoh: Burger Nusantara / PT Maju"
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-red-500 rounded-xl px-4 py-3 text-sm text-slate-900 outline-none">
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                        <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Lampirkan Logo (PNG/JPG)</label>
-                            <input type="file" id="input-logo" accept="image/*" class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-red-500 file:text-white hover:file:bg-red-600 cursor-pointer">
-                        </div>
-                        <div class="bg-slate-50 border border-slate-200 p-3.5 rounded-xl">
-                            <label class="block text-xs font-semibold text-slate-700 mb-1">Lampirkan Foto Produk / Aset (Bisa banyak)</label>
-                            <input type="file" id="input-aset" accept="image/*,application/pdf" multiple class="w-full text-xs text-slate-500 file:mr-3 file:py-2 file:px-3 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-red-500 file:text-white hover:file:bg-red-600 cursor-pointer">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1.5">Catatan Kustomisasi / Warna Pilihan (Opsional)</label>
-                        <textarea id="input-catatan" rows="2" placeholder="Tuliskan warna dominan, referensi domain, atau catatan lain..."
-                            class="w-full bg-slate-50 border border-slate-300 focus:border-red-500 rounded-xl px-4 py-3 text-sm text-slate-900 outline-none"></textarea>
-                    </div>
-
-                    <div class="pt-2">
-                        <button type="submit" class="btn-3d w-full bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold py-4 px-5 rounded-2xl text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/20">
-                            <span>Kirim Formulir & Pesanan ke WhatsApp</span>
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771z"/></svg>
-                        </button>
-                    </div>
+                    <input type="text" id="input-nama" required placeholder="Nama Lengkap" class="w-full border rounded-xl px-4 py-3 text-sm">
+                    <input type="text" id="input-kontak" required placeholder="Nomor WhatsApp" class="w-full border rounded-xl px-4 py-3 text-sm">
+                    <button type="submit" class="w-full bg-emerald-600 text-white font-extrabold py-4 rounded-2xl text-sm">Kirim ke WhatsApp</button>
                 </form>
             </div>
         </div>
     </div>
 
-    <!-- Script Utama Katalog & Animasi Api 3D -->
+    <!-- Skrip Utama Website -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            if (window.lucide) {
-                lucide.createIcons();
-            }
-
-            const mobileDrawer = document.getElementById('mobile-drawer');
-            const mobileBackdrop = document.getElementById('mobile-drawer-backdrop');
-            const mobilePanel = document.getElementById('mobile-drawer-panel');
-            const openMenuBtn = document.getElementById('mobile-menu-open');
-            const closeMenuBtn = document.getElementById('mobile-menu-close');
-            const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
-
-            function openMobileDrawer() {
-                mobileDrawer.classList.remove('hidden');
-                openMenuBtn.setAttribute('aria-expanded', 'true');
-                document.body.style.overflow = 'hidden';
-                requestAnimationFrame(() => {
-                    mobileBackdrop.classList.remove('opacity-0');
-                    mobileBackdrop.classList.add('opacity-100');
-                    mobilePanel.classList.remove('translate-x-full');
-                    mobilePanel.classList.add('translate-x-0');
-                });
-            }
-
-            function closeMobileDrawer() {
-                openMenuBtn.setAttribute('aria-expanded', 'false');
-                mobileBackdrop.classList.remove('opacity-100');
-                mobileBackdrop.classList.add('opacity-0');
-                mobilePanel.classList.remove('translate-x-0');
-                mobilePanel.classList.add('translate-x-full');
-                setTimeout(() => {
-                    mobileDrawer.classList.add('hidden');
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-
-            openMenuBtn?.addEventListener('click', openMobileDrawer);
-            closeMenuBtn?.addEventListener('click', closeMobileDrawer);
-            mobileBackdrop?.addEventListener('click', closeMobileDrawer);
-            mobileNavLinks.forEach(link => link.addEventListener('click', closeMobileDrawer));
-
-            const showreelModal = document.getElementById('showreel-modal');
-            const showreelBackdrop = document.getElementById('showreel-backdrop');
-            const showreelContent = document.getElementById('showreel-content');
-            const showreelVideo = document.getElementById('showreel-video');
-            const openShowreelBtn = document.getElementById('open-showreel-btn');
-            const closeShowreelBtn = document.getElementById('close-showreel-btn');
-
-            function openShowreelModal() {
-                showreelModal.classList.remove('hidden');
-                showreelModal.classList.add('flex');
-                document.body.style.overflow = 'hidden';
-                requestAnimationFrame(() => {
-                    showreelBackdrop.classList.remove('opacity-0');
-                    showreelBackdrop.classList.add('opacity-100');
-                    showreelContent.classList.remove('scale-95', 'opacity-0');
-                    showreelContent.classList.add('scale-100', 'opacity-100');
-                });
-                if (showreelVideo) {
-                    showreelVideo.currentTime = 0;
-                    showreelVideo.play().catch(() => {});
-                }
-            }
-
-            function closeShowreelModal() {
-                showreelBackdrop.classList.remove('opacity-100');
-                showreelBackdrop.classList.add('opacity-0');
-                showreelContent.classList.remove('scale-100', 'opacity-100');
-                showreelContent.classList.add('scale-95', 'opacity-0');
-                if (showreelVideo) showreelVideo.pause();
-                setTimeout(() => {
-                    showreelModal.classList.add('hidden');
-                    showreelModal.classList.remove('flex');
-                    document.body.style.overflow = '';
-                }, 300);
-            }
-
-            openShowreelBtn?.addEventListener('click', openShowreelModal);
-            closeShowreelBtn?.addEventListener('click', closeShowreelModal);
-            showreelBackdrop?.addEventListener('click', closeShowreelModal);
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') {
-                    if (!showreelModal.classList.contains('hidden')) closeShowreelModal();
-                    if (!mobileDrawer.classList.contains('hidden')) closeMobileDrawer();
-                }
-            });
-
+            if (window.lucide) lucide.createIcons();
             document.getElementById("link-wa-footer").href = `https://wa.me/${NOMOR_WHATSAPP}?text=` + encodeURIComponent("Halo Yudha Studio, saya ingin berkonsultasi mengenai pembuatan website.");
             renderKatalog();
         });
 
         const katalogData = [
-            {
-                id: 1, nama: "NEXTGEN", subjudul: "Teknologi & Rekayasa Digital", kategori: "Teknologi & Profesional Design", tema: "Clean Tech Minimalist", hargaPasar: 4000000, hargaStudio: 3800000,
-                keunggulan: ["Hero section simetris nilai perusahaan.", "Kontras tinggi biru elektrik modern."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="NEXTGEN" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 2, nama: "NEXUS", subjudul: "Agensi Kreatif & Strategi Brand", kategori: "Kreatif & Galeri", tema: "Immersive Light Crimson", hargaPasar: 5000000, hargaStudio: 4750000,
-                keunggulan: ["Visual latar belakang bersih.", "Kartu layanan bernomor."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80" alt="NEXUS" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 3, nama: "BASILICO", subjudul: "Restoran Fine Dining & Kuliner", kategori: "Kuliner & Retail", tema: "Luxury Gastronomy", hargaPasar: 4500000, hargaStudio: 4275000,
-                keunggulan: ["Split-screen tipografi serif.", "Sorotan menu andalan."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=600&q=80" alt="BASILICO" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 4, nama: "GreenFuture", subjudul: "Energi Terbarukan & Lingkungan", kategori: "Bisnis & Korporat", tema: "Clean Eco-Corporate Minimalist", hargaPasar: 4200000, hargaStudio: 3990000,
-                keunggulan: ["Tampilan putih bersih & lapang.", "3 pilar utama ESG."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=600&q=80" alt="GreenFuture" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 5, nama: "YUDHA STUDIO (Galeri)", subjudul: "Seni, Arsitektur & Pameran", kategori: "Kreatif & Galeri", tema: "Brutalist Swiss Grid", hargaPasar: 4800000, hargaStudio: 4560000,
-                keunggulan: ["Estetika kuratorial pameran.", "Bento-grid asimetris."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1536924940846-227afb31e2a5?auto=format&fit=crop&w=600&q=80" alt="Art Gallery" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 6, nama: "YUDHA STUDIO (Korporat)", subjudul: "Otomotif & Solusi Bisnis", kategori: "Bisnis & Korporat", tema: "Sleek Monochrome Executive", hargaPasar: 4000000, hargaStudio: 3800000,
-                keunggulan: ["Indikator status aktif.", "Showroom & konsultan."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Corporate" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 7, nama: "Reposé Residence", subjudul: "Properti Mewah & Real Estat", kategori: "Arsitektur & Properti", tema: "Architectural Luxury", hargaPasar: 5200000, hargaStudio: 4940000,
-                keunggulan: ["Panorama arsitektur hunian.", "Tombol inkuiri langsung."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=600&q=80" alt="Luxury Residence" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 8, nama: "PIXZEN", subjudul: "Kecerdasan Buatan & Portofolio", kategori: "Teknologi & Profesional Design", tema: "Modern Editorial & Tech", hargaPasar: 4600000, hargaStudio: 4370000,
-                keunggulan: ["Studi kasus vertikal.", "Label profesional design & robotika."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="PIXZEN" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 9, nama: "SOLUM", subjudul: "E-Commerce Fashion & Retail", kategori: "Kuliner & Retail", tema: "Minimalist Nordic Store", hargaPasar: 6000000, hargaStudio: 5700000,
-                keunggulan: ["Quick Add tanpa pindah halaman.", "Lookbook & Track Order."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=80" alt="SOLUM Store" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 10, nama: "YUDHA STUDIO (Agensi)", subjudul: "Portofolio Kreatif & Web 3D", kategori: "Kreatif & Galeri", tema: "Bold Light Agency", hargaPasar: 4800000, hargaStudio: 4560000,
-                keunggulan: ["Filter interaktif karya.", "Aksen merah cerah."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=600&q=80" alt="Agency 3D" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 11, nama: "YUDHA STUDIO (Burger & Fast Casual)", subjudul: "Restoran & Pemesanan Online", kategori: "Kuliner & Retail", tema: "Warm Cream & Orange", hargaPasar: 4800000, hargaStudio: 4560000, unggulan: true,
-                keunggulan: ["Katalog menu 3 kolom.", "Direct order bag."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-orange-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" alt="Burger Studio" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 12, nama: "YUDHA STUDIO (Arsitektur)", subjudul: "Firma Arsitektur & Interior", kategori: "Arsitektur & Properti", tema: "Nordic Architectural", hargaPasar: 4500000, hargaStudio: 4275000,
-                keunggulan: ["Filosofi desain editorial.", "Whitespace luas."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Architect Studio" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 13, nama: "YUDHA X (Personal Brand)", subjudul: "Konsultan Kreatif & Eksekutif", kategori: "Bisnis & Korporat", tema: "Executive Portrait", hargaPasar: 4000000, hargaStudio: 3800000,
-                keunggulan: ["Membangun otoritas personal.", "Kartu kolaborasi ringkas."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Personal Brand" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 14, nama: "Explore Residences", subjudul: "Properti Interaktif & Apartemen", kategori: "Arsitektur & Properti", tema: "Interactive Elevation", hargaPasar: 6500000, hargaStudio: 6175000,
-                keunggulan: ["Pemilihan lantai interaktif.", "Floating WhatsApp."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="Apartment Unit" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 15, nama: "Custommry X", subjudul: "Studio Desain & Customisasi", kategori: "Kreatif & Galeri", tema: "Artistic Showcase", hargaPasar: 3800000, hargaStudio: 3610000,
-                keunggulan: ["Kartu melayang ekspresif.", "Pencarian cepat & berita."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=600&q=80" alt="Custom Studio" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 16, nama: "BLOOMORA", subjudul: "Florist, Kecantikan & Botani", kategori: "Kuliner & Retail", tema: "Serene Floral Pastel", hargaPasar: 4600000, hargaStudio: 4370000,
-                keunggulan: ["Stempel Handpicked With Love.", "Toko online & jurnal."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1526047932273-341f2a7631f9?auto=format&fit=crop&w=600&q=80" alt="Bloomora Botanical" class="w-full h-full object-cover"></div>`
-            },
-            {
-                id: 17, nama: "SEROTONINN X", subjudul: "Lookbook Fashion & Editorial", kategori: "Kuliner & Retail", tema: "Avant-Garde Scattered", hargaPasar: 5600000, hargaStudio: 5320000,
-                keunggulan: ["Tata letak galeri kolase.", "Jumlah stok item."],
-                mockup: `<div class="h-32 rounded-xl overflow-hidden border border-slate-200 shadow-inner group-hover:scale-[1.02] transition-transform"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=600&q=80" alt="Fashion Lookbook" class="w-full h-full object-cover"></div>`
-            }
+            { id: 1, nama: "NEXTGEN", subjudul: "Teknologi & Rekayasa Digital", kategori: "Teknologi & Profesional Design", tema: "Clean Tech Minimalist", hargaPasar: 4000000, hargaStudio: 3800000, keunggulan: ["Hero section simetris.", "Kontras tinggi."], mockup: `<div class="h-32 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover"></div>` },
+            { id: 2, nama: "NEXUS", subjudul: "Agensi Kreatif & Strategi Brand", kategori: "Kreatif & Galeri", tema: "Immersive Light Crimson", hargaPasar: 5000000, hargaStudio: 4750000, keunggulan: ["Visual latar bersih.", "Layanan bernomor."], mockup: `<div class="h-32 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover"></div>` },
+            { id: 11, nama: "YUDHA STUDIO (Burger)", subjudul: "Restoran & Pemesanan Online", kategori: "Kuliner & Retail", tema: "Warm Cream & Orange", hargaPasar: 4800000, hargaStudio: 4560000, unggulan: true, keunggulan: ["Menu 3 kolom.", "Direct order bag."], mockup: `<div class="h-32 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover"></div>` }
         ];
 
         let keranjang = [];
         let kategoriAktif = "Semua";
         let kataKunci = "";
 
-        function formatRupiah(angka) {
-            return "Rp " + angka.toLocaleString("id-ID");
-        }
+        function formatRupiah(angka) { return "Rp " + angka.toLocaleString("id-ID"); }
 
         function renderKatalog() {
             const grid = document.getElementById("grid-katalog");
-            const kosongState = document.getElementById("kosong-state");
             if (!grid) return;
             grid.innerHTML = "";
-
-            const hasilFilter = katalogData.filter(item => {
-                const cocokKategori = kategoriAktif === "Semua" || item.kategori === kategoriAktif;
-                const cocokCari = item.nama.toLowerCase().includes(kataKunci) ||
-                                  item.subjudul.toLowerCase().includes(kataKunci) ||
-                                  item.tema.toLowerCase().includes(kataKunci);
-                return cocokKategori && cocokCari;
-            });
-
-            if (hasilFilter.length === 0) {
-                kosongState.classList.remove("hidden");
-                return;
-            } else {
-                kosongState.classList.add("hidden");
-            }
-
-            hasilFilter.forEach((item, index) => {
-                const hemat = item.hargaPasar - item.hargaStudio;
-                const isUnggulan = item.id === 11;
-
+            katalogData.forEach(item => {
                 const card = document.createElement("article");
-                card.className = `card-3d reveal-3d bg-white/95 backdrop-blur-md border ${isUnggulan ? 'border-orange-400 ring-2 ring-orange-400/20' : 'border-slate-200'} rounded-3xl p-5 flex flex-col justify-between shadow-xl shadow-slate-200/50`;
-                card.style.transitionDelay = `${(index % 3) * 70}ms`;
-
+                card.className = "bg-white border rounded-3xl p-5 shadow-sm";
                 card.innerHTML = `
-                    <div class="card-glare"></div>
-                    <div>
-                        <div class="flex items-center justify-between gap-2 mb-3.5">
-                            <div class="flex items-center gap-2">
-                                <span class="text-xs font-black px-2.5 py-1 rounded-lg ${isUnggulan ? 'bg-orange-600 text-white' : 'bg-slate-100 text-slate-800 border border-slate-200'}">
-                                    #${String(item.id).padStart(2, '0')}
-                                </span>
-                                <span class="text-[11px] font-semibold text-slate-500">${item.kategori}</span>
-                            </div>
-                            <span class="text-[10px] font-extrabold uppercase tracking-wider bg-emerald-100 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full">
-                                Hemat 5%
-                            </span>
-                        </div>
-                        <div class="mb-4 group">
-                            ${item.mockup}
-                        </div>
-                        <h3 class="text-lg font-extrabold text-slate-900 leading-snug">${item.nama}</h3>
-                        <p class="text-xs text-slate-600 font-medium mt-0.5">${item.subjudul}</p>
-                        <div class="mt-3 inline-block bg-slate-100 border border-slate-200 rounded-lg px-2.5 py-1 text-[11px] text-slate-700">
-                            🎨 Tema: <span class="text-slate-900 font-medium">${item.tema}</span>
-                        </div>
-                        <ul class="mt-4 space-y-1.5 text-xs text-slate-700">
-                            ${item.keunggulan.map(k => `
-                                <li class="flex items-start gap-2">
-                                    <span class="${isUnggulan ? 'text-orange-500' : 'text-red-500'} font-bold">•</span>
-                                    <span class="leading-relaxed">${k}</span>
-                                </li>
-                            `).join("")}
-                        </ul>
-                    </div>
-                    <div class="mt-6 pt-4 border-t border-slate-200">
-                        <div class="flex items-end justify-between mb-3.5">
-                            <div>
-                                <span class="text-[11px] text-slate-400 block">Pasar: <del>${formatRupiah(item.hargaPasar)}</del></span>
-                                <span class="text-xl font-black ${isUnggulan ? 'text-orange-600' : 'text-slate-900'}">${formatRupiah(item.hargaStudio)}</span>
-                            </div>
-                            <span class="text-[11px] font-semibold text-emerald-600">Hemat ${formatRupiah(hemat)}</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <button onclick="bukaModalPesan(${item.id})" class="btn-3d flex-1 ${isUnggulan ? 'bg-orange-600 hover:bg-orange-700 text-white' : 'bg-red-500 hover:bg-red-600 text-white'} font-extrabold py-3 px-4 rounded-xl text-xs sm:text-sm shadow-lg flex items-center justify-center gap-1.5">
-                                <span>Pesan Sekarang</span>
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
-                            </button>
-                            <button onclick="tambahKeKeranjang(${item.id}, this)" title="Simpan ke Pilihan" class="btn-3d bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 p-3 rounded-xl">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg>
-                            </button>
-                        </div>
-                    </div>
+                    <h3 class="text-lg font-bold">${item.nama}</h3>
+                    <p class="text-xs text-slate-500">${item.subjudul}</p>
+                    <div class="mt-4 font-black text-red-600">${formatRupiah(item.hargaStudio)}</div>
+                    <button onclick="bukaModalPesan(${item.id})" class="mt-3 w-full bg-red-500 text-white py-2 rounded-xl text-xs font-bold">Pesan</button>
                 `;
                 grid.appendChild(card);
             });
-
-            inisialisasiEfek3DTilt();
-            inisialisasiScrollReveal();
-            inisialisasiRippleTombol();
-        }
-
-        function inisialisasiEfek3DTilt() {
-            const cards = document.querySelectorAll(".card-3d");
-            cards.forEach(card => {
-                const glare = card.querySelector(".card-glare");
-                const handleMove = (clientX, clientY) => {
-                    const rect = card.getBoundingClientRect();
-                    const x = clientX - rect.left;
-                    const y = clientY - rect.top;
-                    const centerX = rect.width / 2;
-                    const centerY = rect.height / 2;
-                    const rotateX = ((y - centerY) / centerY) * -6;
-                    const rotateY = ((x - centerX) / centerX) * 6;
-                    card.style.transform = `perspective(1000px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) scale3d(1.015, 1.015, 1.015)`;
-                    if (glare) {
-                        glare.style.setProperty("--glare-x", `${(x / rect.width) * 100}%`);
-                        glare.style.setProperty("--glare-y", `${(y / rect.height) * 100}%`);
-                    }
-                };
-                const resetCard = () => { card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)"; };
-                card.addEventListener("mousemove", e => handleMove(e.clientX, e.clientY));
-                card.addEventListener("mouseleave", resetCard);
-                card.addEventListener("touchmove", e => { if (e.touches.length > 0) handleMove(e.touches[0].clientX, e.touches[0].clientY); }, { passive: true });
-                card.addEventListener("touchend", resetCard);
-            });
-        }
-
-        function inisialisasiScrollReveal() {
-            const elements = document.querySelectorAll(".reveal-3d");
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("is-visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            elements.forEach(el => observer.observe(el));
-        }
-
-        function inisialisasiRippleTombol() {
-            const buttons = document.querySelectorAll(".btn-3d");
-            buttons.forEach(btn => {
-                btn.addEventListener("click", function(e) {
-                    const circle = document.createElement("span");
-                    const diameter = Math.max(btn.clientWidth, btn.clientHeight);
-                    const radius = diameter / 2;
-                    const rect = btn.getBoundingClientRect();
-                    circle.style.width = circle.style.height = `${diameter}px`;
-                    circle.style.left = `${(e.clientX || rect.left + radius) - rect.left - radius}px`;
-                    circle.style.top = `${(e.clientY || rect.top + radius) - rect.top - radius}px`;
-                    circle.classList.add("ripple-effect");
-                    const existingRipple = btn.querySelector(".ripple-effect");
-                    if (existingRipple) existingRipple.remove();
-                    btn.appendChild(circle);
-                });
-            });
-        }
-
-        const filterContainer = document.getElementById("filter-container");
-        if (filterContainer) {
-            filterContainer.querySelectorAll(".filter-btn").forEach(btn => {
-                btn.addEventListener("click", () => {
-                    filterContainer.querySelectorAll(".filter-btn").forEach(b => {
-                        b.classList.remove("bg-red-500", "text-white", "font-bold");
-                        b.classList.add("bg-white/90", "text-slate-700", "border", "border-slate-200");
-                    });
-                    btn.classList.remove("bg-white/90", "text-slate-700", "border", "border-slate-200");
-                    btn.classList.add("bg-red-500", "text-white", "font-bold");
-                    kategoriAktif = btn.getAttribute("data-kategori");
-                    renderKatalog();
-                });
-            });
-        }
-
-        const inputCari = document.getElementById("input-cari");
-        if (inputCari) {
-            inputCari.addEventListener("input", (e) => {
-                kataKunci = e.target.value.toLowerCase().trim();
-                renderKatalog();
-            });
-        }
-
-        function resetFilter() {
-            kategoriAktif = "Semua";
-            kataKunci = "";
-            if (inputCari) inputCari.value = "";
-            const btnSemua = document.querySelector('[data-kategori="Semua"]');
-            if (btnSemua) btnSemua.click();
-        }
-
-        function perbaruiBadge() {
-            const badge = document.getElementById("badge-keranjang");
-            if (badge) badge.textContent = keranjang.length;
-        }
-
-        function tambahKeKeranjang(id, btnEl) {
-            const produk = katalogData.find(p => p.id === id);
-            if (!produk) return;
-            if (!keranjang.some(item => item.id === id)) {
-                keranjang.push(produk);
-                perbaruiBadge();
-            }
-            if (btnEl) {
-                const asli = btnEl.innerHTML;
-                btnEl.innerHTML = `<span class="text-emerald-600 font-bold text-xs">✓</span>`;
-                setTimeout(() => { btnEl.innerHTML = asli; }, 900);
-            }
         }
 
         function bukaModalPesan(id) {
-            const produk = katalogData.find(p => p.id === id);
-            if (produk && !keranjang.some(item => item.id === id)) {
-                keranjang.push(produk);
-                perbaruiBadge();
-            }
-            renderIsiModal();
-            const modal = document.getElementById("modal-pemesanan");
-            if (modal) {
-                modal.classList.remove("hidden");
-                modal.classList.add("flex");
-            }
+            const p = katalogData.find(x => x.id === id);
+            if (p && !keranjang.some(i => i.id === id)) keranjang.push(p);
+            document.getElementById("modal-pemesanan").classList.remove("hidden");
+            document.getElementById("modal-pemesanan").classList.add("flex");
         }
 
         function tutupModal() {
-            const modal = document.getElementById("modal-pemesanan");
-            if (modal) {
-                modal.classList.add("hidden");
-                modal.classList.remove("flex");
-            }
-        }
-
-        function hapusDariModal(id) {
-            keranjang = keranjang.filter(item => item.id !== id);
-            perbaruiBadge();
-            if (keranjang.length === 0) tutupModal();
-            else renderIsiModal();
-        }
-
-        function renderIsiModal() {
-            const container = document.getElementById("daftar-item-modal");
-            if (!container) return;
-            container.innerHTML = "";
-            let totalPasar = 0;
-            let totalStudio = 0;
-
-            keranjang.forEach(item => {
-                totalPasar += item.hargaPasar;
-                totalStudio += item.hargaStudio;
-                const row = document.createElement("div");
-                row.className = "flex items-center justify-between bg-slate-50 border border-slate-200 rounded-xl p-3";
-                row.innerHTML = `
-                    <div>
-                        <span class="text-[10px] font-bold text-red-600">#${String(item.id).padStart(2, '0')} • ${item.kategori}</span>
-                        <div class="font-bold text-sm text-slate-900">${item.nama}</div>
-                        <div class="text-xs text-slate-500"><del>${formatRupiah(item.hargaPasar)}</del> → <span class="text-emerald-600 font-bold">${formatRupiah(item.hargaStudio)}</span></div>
-                    </div>
-                    <button onclick="hapusDariModal(${item.id})" class="text-xs text-rose-600 hover:text-rose-700 font-semibold px-2.5 py-1 rounded-lg bg-rose-50">
-                        Hapus
-                    </button>
-                `;
-                container.appendChild(row);
-            });
-
-            document.getElementById("modal-harga-pasar").textContent = formatRupiah(totalPasar);
-            document.getElementById("modal-total-hemat").textContent = "- " + formatRupiah(totalPasar - totalStudio);
-            document.getElementById("modal-harga-akhir").textContent = formatRupiah(totalStudio);
-        }
-
-        function buatTeksPesanan() {
-            const nama = document.getElementById("input-nama").value || "Calon Klien";
-            const kontak = document.getElementById("input-kontak").value || "-";
-            const bisnis = document.getElementById("input-bisnis").value || "-";
-            const catatan = document.getElementById("input-catatan").value || "Tidak ada catatan tambahan";
-            
-            const logoInput = document.getElementById("input-logo");
-            const asetInput = document.getElementById("input-aset");
-            
-            let infoLogo = logoInput?.files?.length > 0 ? `📁 ${logoInput.files[0].name}` : "*(Belum dilampirkan/Akan dikirim di chat)*";
-            let infoAset = "Tidak ada";
-            if (asetInput?.files?.length > 0) {
-                let namaFiles = [];
-                for(let i=0; i<asetInput.files.length; i++) {
-                    namaFiles.push(asetInput.files[i].name);
-                }
-                infoAset = namaFiles.join(", ");
-            }
-
-            const daftarNama = keranjang.map(i => `• #${String(i.id).padStart(2, '0')} ${i.nama} (${formatRupiah(i.hargaStudio)})`).join("\n");
-            const totalAkhir = keranjang.reduce((acc, i) => acc + i.hargaStudio, 0);
-
-            return `📥 *FORMULIR PESANAN WEBSITE - YUDHA STUDIO*\n\n` +
-                   `*Template Pilihan:*\n${daftarNama}\n\n` +
-                   `💰 *Total Investasi (Diskon 5%):* ${formatRupiah(totalAkhir)}\n\n` +
-                   `👤 *Nama Pemesan:* ${nama}\n` +
-                   `📞 *Kontak Customer:* ${kontak}\n` +
-                   `🏢 *Nama Bisnis:* ${bisnis}\n` +
-                   `🖼️ *File Logo Dilampirkan:* ${infoLogo}\n` +
-                   `📦 *File Foto/Aset Produk:* ${infoAset}\n` +
-                   `📝 *Catatan Kustomisasi:* ${catatan}\n\n` +
-                   `_Halo Admin Yudha Studio, saya mengirimkan formulir dan file data website ini untuk segera diproses._`;
+            document.getElementById("modal-pemesanan").classList.add("hidden");
+            document.getElementById("modal-pemesanan").classList.remove("flex");
         }
 
         function kirimPesanan(e) {
             e.preventDefault();
-            const pesan = encodeURIComponent(buatTeksPesanan());
-            window.open(`https://wa.me/${NOMOR_WHATSAPP}?text=${pesan}`, "_blank");
+            window.open(`https://wa.me/${NOMOR_WHATSAPP}?text=Halo%20Yudha%20Studio,%20saya%20ingin%20memesan%20website.`, "_blank");
             tutupModal();
         }
     </script>
 
-    <!-- =================================================================== -->
-    <!-- SCRIPT ANIMASI API 3D (BACKGROUND)                                  -->
-    <!-- =================================================================== -->
+    <!-- Skrip Animasi Api 3D (Background) -->
     <script>
     (function(){
         var c = document.getElementById("bg"),
             x = c.getContext("2d"), 
             W, H, D, 
-            N = 16000, 
+            N = 4000, 
             ps = [], 
             sparks = [], 
-            numSparks = 600, 
+            numSparks = 200, 
             cur = 0, 
             ph = 0, 
             t0 = performance.now(), 
@@ -1269,125 +485,6 @@
             fr = 0, 
             bst = 0, 
             tch = 0;
-        
-        var rm = matchMedia("(prefers-reduced-motion:reduce)").matches;
-
-        function rr(g,a,b,w,h,r){
-            g.beginPath();
-            g.moveTo(a+r,b);
-            g.arcTo(a+w,b,a+w,b+h,r);
-            g.arcTo(a+w,b+h,a,b+h,r);
-            g.arcTo(a,b+h,a,b,r);
-            g.arcTo(a,b,a+w,b,r);
-            g.closePath();
-            g.fill();
-        }
-
-        function mk(f){
-            var size = 360;
-            var o = document.createElement("canvas");
-            o.width = o.height = size;
-            var g = o.getContext("2d");
-            g.fillStyle = g.strokeStyle = "#000";
-            g.lineCap = "round";
-            
-            g.save();
-            g.filter = "blur(2.5px)";
-            f(g, size);
-            g.restore();
-            var blurData = g.getImageData(0, 0, size, size).data;
-
-            g.clearRect(0, 0, size, size);
-            f(g, size);
-            var d = g.getImageData(0, 0, size, size).data, p = [];
-
-            for(var j = 0; j < size; j += 1.6) {
-                for(var i = 0; i < size; i += 1.6) {
-                    var ix = Math.floor(i), jy = Math.floor(j);
-                    var idx = (jy * size + ix) * 4;
-                    if(d[idx + 3] > 170){
-                        var lum = (d[idx] * 0.3 + d[idx + 1] * 0.59 + d[idx + 2] * 0.11) / 255;
-                        var depth = (blurData[idx + 3] / 255);
-                        
-                        var idxL = (jy * size + Math.max(0, ix - 2)) * 4 + 3;
-                        var idxT = (Math.max(0, jy - 2) * size + ix) * 4 + 3;
-                        var nx = (blurData[idxL] - blurData[idx + 3]) / 255;
-                        var ny = (blurData[idxT] - blurData[idx + 3]) / 255;
-
-                        p.push([
-                            i / size - 0.5, 
-                            j / size - 0.5, 
-                            lum,
-                            depth,
-                            nx,
-                            ny
-                        ]);
-                    }
-                }
-            }
-            for(var k = p.length - 1; k > 0; k--){
-                var m = Math.random() * (k + 1) | 0, t = p[k];
-                p[k] = p[m]; p[m] = t;
-            }
-            return p;
-        }
-
-        var shapes = [
-            mk(function(g, s){
-                var sc = s / 300;
-                g.save();
-                g.scale(sc, sc);
-                [[92,95],[119,70],[146,80],[173,105]].forEach(function(f){rr(g,f[0],f[1],26,100,13)});
-                rr(g,90,150,110,100,32);
-                g.save();
-                g.translate(98,215);
-                g.rotate(-.9);
-                rr(g,-14,-72,28,90,14);
-                g.restore();
-                g.restore();
-            }),
-            [[0, 0, 1, 0.5, 0, 0]],
-            mk(function(g, s){
-                var sc = s / 300;
-                g.lineWidth = 48 * sc;
-                g.beginPath();
-                g.moveTo(55 * sc, 55 * sc); g.lineTo(245 * sc, 245 * sc);
-                g.moveTo(245 * sc, 55 * sc); g.lineTo(55 * sc, 245 * sc);
-                g.stroke();
-            }),
-            mk(function(g, s){
-                var sc = s / 300;
-                g.lineWidth = 24 * sc;
-                g.beginPath();
-                for(var t = 0; t < 12.5; t += 0.06){
-                    var r = (8 + t * 7.8) * sc;
-                    g[t ? "lineTo" : "moveTo"](150 * sc + Math.cos(t) * r, 150 * sc + Math.sin(t) * r);
-                }
-                g.stroke();
-            }),
-            mk(function(g, s){
-                var sc = s / 300;
-                g.font = "900 " + Math.round(58 * sc) + "px sans-serif";
-                g.textAlign = "center";
-                g.textBaseline = "middle";
-                g.fillText("YUDHA", 150 * sc, 115 * sc);
-                g.fillText("STUDIO", 150 * sc, 185 * sc);
-            })
-        ];
-
-        function assign(){
-            var pts = shapes[cur];
-            ps.forEach(function(p){
-                var q = pts[p.i % pts.length];
-                p.lum = q[2] !== undefined ? q[2] : 0.8;
-                p.a = q[0] + (Math.random() - 0.5) * 0.003;
-                p.b = q[1] + (Math.random() - 0.5) * 0.003;
-                var thickness = (q[3] || 0.5) * 0.13;
-                p.c = (Math.random() - 0.5) * thickness;
-                p.nx = q[4] || 0;
-                p.ny = q[5] || 0;
-            });
-        }
 
         function size(){
             D = Math.min(devicePixelRatio || 1, 2);
@@ -1399,166 +496,49 @@
             
             while(ps.length < N) {
                 ps.push({
-                    x: Math.random() * W,
-                    y: Math.random() * H,
-                    z: 0,
-                    vx: 0, vy: 0, vz: 0,
-                    s: 1.2 + Math.random() * 1.1,
-                    j: Math.random() * 6.28,
-                    i: ps.length
+                    x: Math.random() * W, y: Math.random() * H, z: 0,
+                    vx: 0, vy: 0, vz: 0, s: 1.2 + Math.random() * 1.1, i: ps.length
                 });
             }
             ps.length = N;
 
             while(sparks.length < numSparks) {
                 sparks.push({
-                    x: Math.random() * W,
-                    y: Math.random() * H,
-                    vy: -(1 + Math.random() * 2.5),
-                    vx: (Math.random() - 0.5) * 1.2,
-                    s: 0.8 + Math.random() * 1.6,
-                    alpha: 0.2 + Math.random() * 0.6,
-                    hue: 10 + Math.random() * 35
+                    x: Math.random() * W, y: Math.random() * H,
+                    vy: -(1 + Math.random() * 2), vx: (Math.random() - 0.5),
+                    s: 0.8 + Math.random() * 1.2, alpha: 0.3 + Math.random() * 0.4, hue: 15 + Math.random() * 30
                 });
             }
-
-            x.globalAlpha = 1;
-            x.globalCompositeOperation = "source-over";
-            x.fillStyle = "#FFFFFF";
-            x.fillRect(0, 0, W, H);
-            assign();
         }
 
         function frame(now){
-            var t = (now - t0) / 1000, 
-                cyc = t % 7.0, 
-                flow = !rm && cyc > 5.0;
-                
-            if(flow && !ph) {
-                ph = 1;
-            } else if(!flow && ph) {
-                ph = 0;
-                cur = (cur + 1) % shapes.length;
-                assign();
-            }
-            
-            var m = W < 700,
-                S = Math.min(W, H) * (m ? 0.92 : 0.85),
-                cx = m ? W * 0.5 : W * 0.65,
-                cy = H * 0.5;
-                
-            x.globalCompositeOperation = "source-over";
-            x.globalAlpha = 0.4;
+            var t = (now - t0) / 1000;
             x.fillStyle = "#FFFFFF";
             x.fillRect(0, 0, W, H);
             
             for(var s = 0; s < numSparks; s++){
                 var spk = sparks[s];
                 spk.y += spk.vy;
-                spk.x += spk.vx + Math.sin(t * 2 + s) * 0.4;
-
-                if(spk.y < -10) {
-                    spk.y = H + 10;
-                    spk.x = Math.random() * W;
-                }
-                if(spk.x < 0) spk.x = W; else if(spk.x > W) spk.x = 0;
-
+                spk.x += spk.vx + Math.sin(t + s) * 0.3;
+                if(spk.y < -10) { spk.y = H + 10; spk.x = Math.random() * W; }
                 x.fillStyle = "hsla(" + spk.hue + ", 100%, 50%, " + spk.alpha + ")";
                 x.fillRect(spk.x, spk.y, spk.s, spk.s * 1.5);
             }
 
-            x.globalCompositeOperation = "source-over";
-            bst *= 0.92;
-            
-            var R2 = Math.pow(tch ? 160 : 135, 2) * (1 + bst * 0.3);
-
-            var rotY = Math.sin(t * 0.85) * 0.32;
-            var rotX = Math.cos(t * 0.65) * 0.18;
-            if (mx > 0 && my > 0) {
-                rotY += ((mx - cx) / W) * 0.45;
-                rotX -= ((my - cy) / H) * 0.35;
-            }
-            var cosY = Math.cos(rotY), sinY = Math.sin(rotY);
-            var cosX = Math.cos(rotX), sinX = Math.sin(rotX);
-            var fov = 900;
-
-            if (fr % 3 === 0) {
-                ps.sort(function(a, b) { return b.z - a.z; });
-            }
-
             for(var i = 0; i < N; i++){
                 var p = ps[i];
-                
-                if(!ph){
-                    var x1 = p.a * cosY - p.c * sinY;
-                    var z1 = p.c * cosY + p.a * sinY;
-                    var y2 = p.b * cosX - z1 * sinX;
-                    var z2 = z1 * cosX + p.b * sinX;
+                p.x += (Math.sin(t + p.i) * 0.5);
+                p.y += (Math.cos(t + p.i) * 0.5);
+                if(p.x < 0) p.x = W; else if(p.x > W) p.x = 0;
+                if(p.y < 0) p.y = H; else if(p.y > H) p.y = 0;
 
-                    var zWorld = z2 * S;
-                    var scale3D = fov / (fov + zWorld);
-                    
-                    var tx = cx + (x1 * S) * scale3D;
-                    var ty = cy + (y2 * S) * scale3D;
-
-                    p.vx += (tx - p.x) * 0.03;
-                    p.vy += (ty - p.y) * 0.03;
-                    p.vz += (zWorld - p.z) * 0.06;
-                } else {
-                    var an = Math.sin(p.x * 0.004 + t) * 3 + Math.cos(p.y * 0.005 - t * 0.7) * 3;
-                    p.vx += Math.cos(an) * 0.35;
-                    p.vy += Math.sin(an) * 0.35;
-                    p.vz *= 0.92;
-                }
-                
-                var dx = p.x - mx, dy = p.y - my, d2 = dx * dx + dy * dy;
-                if(d2 < R2){
-                    var d = Math.sqrt(d2) + 0.1, f = (1 - d2 / R2) * (2.6 + bst * 3.2);
-                    p.vx += dx / d * f;
-                    p.vy += dy / d * f;
-                    p.vz -= f * 10;
-                }
-                
-                p.vx *= 0.86; p.vy *= 0.86; p.vz *= 0.86;
-                p.x += p.vx; p.y += p.vy; p.z += p.vz;
-                
-                if(p.x < -30) p.x = W + 30; else if(p.x > W + 30) p.x = -30;
-                if(p.y < -30) p.y = H + 30; else if(p.y > H + 30) p.y = -30;
-                
-                var persp = Math.max(0.45, Math.min(1.8, fov / (fov + p.z)));
-                
-                var lightDot = (-p.nx * 0.8 - p.ny * 0.8);
-                var depthShade = Math.max(0.3, Math.min(1.0, (persp - 0.6) * 1.5));
-                var lightness = Math.min(65, Math.max(30, (50 - lightDot * 15) * depthShade));
-                
-                var sp = Math.abs(p.vx) + Math.abs(p.vy);
-                var alpha = Math.min(0.98, (0.7 + sp * 0.1) * depthShade);
-                var pixelSize = p.s * persp;
-
-                x.fillStyle = "hsla(5, 95%, " + lightness + "%, " + alpha + ")";
-                x.fillRect(p.x - pixelSize * 0.5, p.y - pixelSize * 0.5, pixelSize, pixelSize);
+                x.fillStyle = "hsla(5, 90%, 50%, 0.6)";
+                x.fillRect(p.x, p.y, p.s, p.s);
             }
-            
-            fr++;
-            if(!rm || fr < 160) requestAnimationFrame(frame);
+            requestAnimationFrame(frame);
         }
 
         addEventListener("resize", size);
-        
-        function tp(e){
-            var t = e.touches && e.touches[0];
-            if(t){ tch = 1; mx = t.clientX; my = t.clientY; }
-        }
-        
-        addEventListener("pointermove", function(e){
-            if(e.pointerType !== "touch"){ tch = 0; mx = e.clientX; my = e.clientY; }
-        });
-        addEventListener("touchstart", function(e){ tp(e); bst = 1; }, {passive: true});
-        addEventListener("touchmove", tp, {passive: true});
-        addEventListener("touchend", function(){ mx = my = -999; }, {passive: true});
-        addEventListener("touchcancel", function(){ mx = my = -999; }, {passive: true});
-        document.addEventListener("pointerleave", function(){ mx = my = -999; });
-
         size();
         requestAnimationFrame(frame);
     })();
