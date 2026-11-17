@@ -1,4 +1,4 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
@@ -7,11 +7,12 @@
     <!-- Google Fonts: Plus Jakarta Sans & Inter untuk Keterbacaan Optimal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
+            darkMode: 'class',
             theme: {
                 extend: {
                     colors: {
@@ -25,7 +26,7 @@
                     },
                     fontFamily: {
                         heading: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        sans: ['"Inter"', 'sans-serif'],
+                        sans: ['"Inter"', 'system-ui', 'sans-serif'],
                         mono: ['"JetBrains Mono"', 'monospace'],
                     }
                 }
@@ -33,7 +34,11 @@
         }
     </script>
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #080503; color: #F4F1EA; }
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body { font-family: 'Inter', sans-serif; background-color: #080503; color: #F4F1EA; overflow-x: hidden; }
         h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
         .font-mono { font-family: 'JetBrains Mono', monospace; }
         .glass-panel {
@@ -56,10 +61,7 @@
         .glass-card > div {
             transform: translateZ(20px);
         }
-        .preview-cutoff {
-            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 85%, rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 85%, rgba(0,0,0,0) 100%);
-        }
+
         /* Background Bintik Api (Fixed agar tidak ikut terscroll) */
         .fire-bg {
             position: fixed;
@@ -94,7 +96,7 @@
             }
         }
 
-        /* Animasi Melayang & Kepak Sayap Phoenix (Fixed di tengah layar) */
+        /* Animasi Melayang & Kepak Sayap Phoenix (Responsive sizing) */
         .phoenix-container {
             position: fixed;
             top: 50%;
@@ -102,9 +104,9 @@
             transform: translate(-50%, -50%);
             z-index: 0;
             pointer-events: none;
-            width: min(450px, 85vw);
+            width: min(350px, 70vw);
             height: auto;
-            opacity: 0.85;
+            opacity: 0.75;
             animation: phoenixFloat 6s ease-in-out infinite;
         }
 
@@ -130,6 +132,47 @@
             }
             50% {
                 transform: scaleY(0.92) rotate(-1.5deg);
+            }
+        }
+
+        /* ── TiltedGridHero 3D Cylindrical Panoramic Showcase Styles ── */
+        .ambient-glow {
+            background:
+                radial-gradient(circle at 50% 42%, rgba(99, 102, 241, 0.08) 0%, rgba(168, 85, 247, 0.03) 35%, transparent 70%),
+                radial-gradient(circle at 80% 80%, rgba(14, 165, 233, 0.04) 0%, transparent 50%);
+        }
+
+        .tgh-tile {
+            position: absolute;
+            transform-style: preserve-3d;
+            will-change: transform;
+            cursor: pointer;
+            transition: filter 0.3s ease;
+        }
+        .tgh-tile:hover {
+            filter: brightness(1.25) drop-shadow(0 0 12px rgba(224, 90, 54, 0.6));
+        }
+
+        .tgh-slice {
+            position: absolute;
+            top: 0;
+            overflow: hidden;
+            background-color: rgba(24, 24, 27, 0.5);
+            backface-visibility: hidden;
+        }
+
+        .tgh-slice img {
+            position: absolute;
+            top: 0;
+            max-width: none;
+            object-fit: cover;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .tgh-tile {
+                animation-play-state: paused !important;
             }
         }
 
@@ -182,23 +225,23 @@
 
     <!-- HEADER / NAVBAR -->
     <header class="sticky top-0 z-50 glass-panel border-b border-slateBorder/80">
-        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
             <a href="#" class="flex items-center space-x-3 group">
-                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-slateDark via-[#1b1e26] to-obsidian border border-gold/40 flex items-center justify-center relative overflow-hidden group-hover:border-copper group-hover:shadow-lg group-hover:shadow-copper/20 transition-all duration-300">
+                <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-gradient-to-br from-slateDark via-[#1b1e26] to-obsidian border border-gold/40 flex items-center justify-center relative overflow-hidden group-hover:border-copper group-hover:shadow-lg group-hover:shadow-copper/20 transition-all duration-300">
                     <div class="absolute -right-4 -bottom-4 w-12 h-12 bg-gold/10 rounded-full blur-md"></div>
-                    <svg class="w-6 h-6 text-gold group-hover:text-copper transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 text-gold group-hover:text-copper transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 5l8 10 8-10"></path>
                         <path d="M12 15v5" stroke-width="2.5"></path>
                         <circle cx="12" cy="4" r="1" fill="currentColor"></circle>
                     </svg>
                 </div>
                 <div>
-                    <span class="font-heading font-extrabold text-xl tracking-tight text-white block">YUDHA STUDIO</span>
-                    <span class="font-mono text-xs text-mutedText block">WEB & DIGITAL ENGINEERING</span>
+                    <span class="font-heading font-extrabold text-base sm:text-xl tracking-tight text-white block">YUDHA STUDIO</span>
+                    <span class="font-mono text-[10px] sm:text-xs text-mutedText block">WEB & DIGITAL ENGINEERING</span>
                 </div>
             </a>
 
-            <nav class="hidden md:flex items-center space-x-8 font-sans font-medium text-sm text-mutedText">
+            <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 font-sans font-medium text-sm text-mutedText">
                 <a href="#beranda" class="hover:text-alabaster transition-colors">Beranda</a>
                 <a href="#katalog" class="hover:text-alabaster transition-colors">Katalog Karya</a>
                 <a href="#daftar-design" class="hover:text-alabaster transition-colors">Daftar Design</a>
@@ -232,377 +275,502 @@
     </header>
 
     <!-- HERO SECTION -->
-    <section id="beranda" class="pt-20 pb-32 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-12 space-y-8 text-center max-w-4xl mx-auto relative">
-                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slateDark border border-slateBorder text-xs font-mono text-gold mx-auto">
+    <section id="beranda" class="pt-16 pb-24 sm:pt-20 sm:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-12 space-y-6 sm:space-y-8 text-center max-w-4xl mx-auto relative">
+                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slateDark border border-slateBorder text-[11px] sm:text-xs font-mono text-gold mx-auto">
                     <span class="w-2 h-2 rounded-full bg-copper animate-pulse"></span>
                     <span>STUDIO PENGEMBANGAN WEB PROFESIONAL</span>
                 </div>
                 
-                <h1 class="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.15]" style="color: #ffae42; text-shadow: 0 0 25px rgba(255, 174, 66, 0.4);">
+                <h1 class="font-heading font-extrabold text-3xl sm:text-5xl lg:text-7xl tracking-tight leading-[1.15]" style="color: #ffae42; text-shadow: 0 0 25px rgba(255, 174, 66, 0.4);">
                     Membangun Masa Depan Digital Bisnis Anda.
                 </h1>
                 
-                <p class="font-sans text-mutedText text-base sm:text-xl leading-relaxed max-w-2xl mx-auto">
+                <p class="font-sans text-mutedText text-sm sm:text-lg lg:text-xl leading-relaxed max-w-2xl mx-auto px-2">
                     YUDHA STUDIO menghadirkan solusi pembuatan website profesional berstandar tinggi. Perpaduan desain arsitektural modern, performa super cepat, dan estetika eksklusif untuk meningkatkan kredibilitas brand Anda.
                 </p>
 
-                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
-                    <a href="#katalog" class="px-8 py-4 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center transition-all shadow-lg shadow-copper/25 flex items-center justify-center space-x-2">
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-3 sm:space-y-0 sm:space-x-4 pt-2">
+                    <a href="#katalog" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center transition-all shadow-lg shadow-copper/25 flex items-center justify-center space-x-2 text-sm sm:text-base">
                         <span>Jelajahi Katalog Karya</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
-                    <a href="#layanan" class="px-8 py-4 rounded-xl glass-card hover:bg-slateDark text-alabaster font-heading font-semibold text-center transition-all">
+                    <a href="#layanan" class="w-full sm:w-auto px-8 py-3.5 sm:py-4 rounded-xl glass-card hover:bg-slateDark text-alabaster font-heading font-semibold text-center transition-all text-sm sm:text-base">
                         Lihat Paket Harga
                     </a>
                 </div>
 
-                <div class="grid grid-cols-3 gap-6 pt-12 border-t border-slateBorder/60 max-w-2xl mx-auto">
+                <div class="grid grid-cols-3 gap-4 sm:gap-6 pt-8 sm:pt-12 border-t border-slateBorder/60 max-w-2xl mx-auto">
                     <div>
-                        <span class="font-heading font-bold text-2xl text-white block">150+</span>
-                        <span class="font-sans text-xs text-mutedText block mt-1">Proyek Selesai</span>
+                        <span class="font-heading font-bold text-xl sm:text-2xl text-white block">150+</span>
+                        <span class="font-sans text-[11px] sm:text-xs text-mutedText block mt-1">Proyek Selesai</span>
                     </div>
                     <div>
-                        <span class="font-heading font-bold text-2xl text-white block">99.8%</span>
-                        <span class="font-sans text-xs text-mutedText block mt-1">Kepuasan Klien</span>
+                        <span class="font-heading font-bold text-xl sm:text-2xl text-white block">99.8%</span>
+                        <span class="font-sans text-[11px] sm:text-xs text-mutedText block mt-1">Kepuasan Klien</span>
                     </div>
                     <div>
-                        <span class="font-heading font-bold text-2xl text-white block">24/7</span>
-                        <span class="font-sans text-xs text-mutedText block mt-1">Dukungan Teknis</span>
+                        <span class="font-heading font-bold text-xl sm:text-2xl text-white block">24/7</span>
+                        <span class="font-sans text-[11px] sm:text-xs text-mutedText block mt-1">Dukungan Teknis</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- KATALOG KARYA & PRODUK (12 Item) -->
-    <section id="katalog" class="py-24 border-t border-slateBorder/60 bg-slateDark/30">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+    <!-- KATALOG KARYA & PRODUK (12 Item dengan Gambar Ilustrasi Profesional) -->
+    <section id="katalog" class="py-16 sm:py-24 border-t border-slateBorder/60 bg-slateDark/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16">
                 <div>
-                    <span class="font-mono text-xs text-copper tracking-widest uppercase block mb-2">PAJANGAN & PRATINJAU LANGSUNG</span>
-                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Katalog Jasa & Karya Pilihan</h2>
+                    <span class="font-mono text-xs text-copper tracking-widest uppercase block mb-2">PORTOFOLIO & LAYANAN UNGGULAN</span>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-4xl tracking-tight">Katalog Jasa & Karya Pilihan</h2>
                 </div>
-                <p class="font-sans text-mutedText text-sm max-w-md mt-4 md:mt-0">
-                    Pratinjau antarmuka ditampilkan secara otomatis dalam mode <span class="text-gold font-mono">Teaser Terbatas</span>. Hubungi kami untuk akses demo penuh dan kustomisasi.
+                <p class="font-sans text-mutedText text-xs sm:text-sm max-w-md mt-3 md:mt-0">
+                    Setiap karya dikembangkan dengan standar rekayasa tingkat tinggi, estetika visual eksklusif, serta performa super cepat.
                 </p>
             </div>
 
-            <!-- Grid Katalog (12 Contoh Web) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Grid Katalog (12 Contoh Web dengan Gambar Ilustrasi) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Item 1 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-001</span>
-                            <span class="font-mono text-xs text-mutedText">Corporate</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80" alt="Executive Company Profile" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-001</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">Corporate</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Executive Company Profile</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website profil perusahaan tingkat lanjut dengan animasi halus dan tata letak eksklusif.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Executive Company Profile</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website profil perusahaan tingkat lanjut dengan animasi halus dan tata letak eksklusif.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 3.5jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-001')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-001 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 3.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-001')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-001 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 2 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-002</span>
-                            <span class="font-mono text-xs text-mutedText">E-Commerce</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1557821552-17105176670c?auto=format&fit=crop&w=600&q=80" alt="Advanced E-Commerce Store" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-002</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">E-Commerce</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Advanced E-Commerce Store</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Toko online lengkap dengan sistem keranjang, integrasi payment gateway, dan manajemen produk.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Advanced E-Commerce Store</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Toko online lengkap dengan sistem keranjang, integrasi payment gateway, dan manajemen produk.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 5.5jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-002')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-002 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 5.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-002')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-002 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 3 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-003</span>
-                            <span class="font-mono text-xs text-mutedText">SaaS / App</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80" alt="SaaS Web Application" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-003</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">SaaS / App</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">SaaS Web Application</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Antarmuka dashboard web interaktif untuk layanan digital, analitik, dan manajemen cloud.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">SaaS Web Application</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Antarmuka dashboard web interaktif untuk layanan digital, analitik, dan manajemen cloud.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 7.5jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-003')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-003 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 7.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-003')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-003 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 4 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-004</span>
-                            <span class="font-mono text-xs text-mutedText">Web App</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=600&q=80" alt="Attendance & HR Web App" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-004</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">Web App</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Attendance & HR Web App</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Sistem pencatatan kehadiran karyawan dan manajemen absensi dengan laporan CSV otomatis.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Attendance & HR Web App</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Sistem pencatatan kehadiran karyawan dan manajemen absensi dengan laporan CSV otomatis.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 4.5jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-004')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-004 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 4.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-004')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-004 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 5 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-005</span>
-                            <span class="font-mono text-xs text-mutedText">Creative Agency</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&w=600&q=80" alt="Creative Agency Showcase" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-005</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">Creative Agency</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Creative Agency Showcase</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website portofolio artistik dengan galeri visual dinamis untuk fotografer dan desainer.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Creative Agency Showcase</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website portofolio artistik dengan galeri visual dinamis untuk fotografer dan desainer.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 3.0jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-005')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-005 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 3.0jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-005')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-005 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 6 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-006</span>
-                            <span class="font-mono text-xs text-mutedText">Real Estate</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=600&q=80" alt="Real Estate Property Portal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-006</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">Real Estate</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Real Estate Property Portal</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Katalog properti dengan fitur filter lokasi, galeri interaktif, dan formulir penjadwalan survei.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Real Estate Property Portal</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Katalog properti dengan fitur filter lokasi, galeri interaktif, dan formulir penjadwalan survei.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 5.0jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-006')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-006 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 5.0jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-006')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-006 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 7 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-007</span>
-                            <span class="font-mono text-xs text-mutedText">F&B / Culinary</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Culinary & Restaurant Menu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-007</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">F&B / Culinary</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Culinary & Restaurant Menu</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website restoran elegan dengan menu digital interaktif dan sistem reservasi meja online.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Culinary & Restaurant Menu</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website restoran elegan dengan menu digital interaktif dan sistem reservasi meja online.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 3.2jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-007')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-007 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 3.2jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-007')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-007 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 8 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-008</span>
-                            <span class="font-mono text-xs text-mutedText">Personal / CV</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80" alt="Professional Personal Brand" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-008</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">Personal / CV</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Professional Personal Brand</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Portofolio personal interaktif dan CV digital berstandar internasional untuk profesional.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Professional Personal Brand</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Portofolio personal interaktif dan CV digital berstandar internasional untuk profesional.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 2.5jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-008')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-008 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 2.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-008')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-008 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 9 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-009</span>
-                            <span class="font-mono text-xs text-mutedText">FinTech</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=600&q=80" alt="FinTech & Digital Wallet UI" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-009</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">FinTech</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">FinTech & Digital Wallet UI</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Platform keuangan modern dengan visualisasi saldo real-time, keamanan berlapis, dan transaksi instan.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">FinTech & Digital Wallet UI</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Platform keuangan modern dengan visualisasi saldo real-time, keamanan berlapis, dan transaksi instan.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 6.8jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-009')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-009 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 6.8jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-009')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-009 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 10 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-010</span>
-                            <span class="font-mono text-xs text-mutedText">EdTech / LMS</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80" alt="E-Learning & Course Platform" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-010</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">EdTech / LMS</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">E-Learning & Course Platform</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Portal kursus online lengkap dengan pelacakan progres belajar, kuis interaktif, dan sertifikat otomatis.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">E-Learning & Course Platform</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Portal kursus online lengkap dengan pelacakan progres belajar, kuis interaktif, dan sertifikat otomatis.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 5.2jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-010')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-010 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 5.2jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-010')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-010 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 11 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-011</span>
-                            <span class="font-mono text-xs text-mutedText">Healthcare</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="Clinic & Healthcare Booking" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-011</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">Healthcare</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Clinic & Healthcare Booking</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website klinik kesehatan & rumah sakit dengan jadwal dokter real-time dan pendaftaran pasien online.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Clinic & Healthcare Booking</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website klinik kesehatan & rumah sakit dengan jadwal dokter real-time dan pendaftaran pasien online.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 4.2jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-011')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-011 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 4.2jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-011')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-011 &rarr;</a>
                     </div>
                 </div>
 
                 <!-- Item 12 -->
-                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                <div class="glass-card rounded-2xl overflow-hidden flex flex-col justify-between group">
                     <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-012</span>
-                            <span class="font-mono text-xs text-mutedText">Logistics</span>
+                        <div class="relative h-44 overflow-hidden bg-slateDark">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=600&q=80" alt="Logistics & Tracking Portal" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute top-3 left-3">
+                                <span class="font-mono text-[10px] text-gold bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-gold/30">YS-PRJ-012</span>
+                            </div>
+                            <div class="absolute top-3 right-3">
+                                <span class="font-mono text-[10px] text-mutedText bg-obsidian/80 backdrop-blur-md px-2.5 py-1 rounded-md border border-slateBorder">Logistics</span>
+                            </div>
                         </div>
-                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Logistics & Tracking Portal</h3>
-                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Sistem web ekspedisi dengan pelacakan resi real-time, kalkulator ongkos kirim, dan manajemen armada.</p>
+                        <div class="p-5">
+                            <h3 class="font-heading font-bold text-base sm:text-lg text-white group-hover:text-copper transition-colors">Logistics & Tracking Portal</h3>
+                            <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Sistem web ekspedisi dengan pelacakan resi real-time, kalkulator ongkos kirim, dan manajemen armada.</p>
+                        </div>
                     </div>
-                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
-                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 4.8jt</span>
-                        <a href="#kontak" onclick="selectSku('YS-PRJ-012')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-012 &rarr;</a>
+                    <div class="px-5 pb-5 pt-3 border-t border-slateBorder/60 flex items-center justify-between">
+                        <span class="font-heading font-semibold text-xs sm:text-sm text-white">Mulai Rp 4.8jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-012')" class="text-xs font-mono text-copper hover:underline font-semibold">Pesan SKU-012 &rarr;</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CONTOH DAFTAR DESIGN (20 BINGKAI KATALOG WEBSITE) -->
-    <section id="daftar-design" class="py-24 border-t border-slateBorder/60 bg-obsidian/40">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
-                <div>
-                    <span class="font-mono text-xs text-gold tracking-widest uppercase block mb-2">ARSIP TEMPLATE & REFERENSI UI</span>
-                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-white">Contoh Daftar Design</h2>
+    <!-- CONTOH DAFTAR DESIGN (3D CYLINDRICAL PANORAMIC SHOWCASE - Diperbesar & Teks Didorong) -->
+    <section
+        id="daftar-design"
+        class="relative w-full h-[85vh] sm:h-screen overflow-hidden flex flex-col justify-between ambient-glow border-t border-slateBorder/60 bg-transparent select-none"
+        style="container-type: size;"
+    >
+        <!-- Dynamic Keyframes Style Tag -->
+        <style id="tgh-dynamic-keyframes"></style>
+
+        <!-- Top Showcase Bar -->
+        <div class="relative z-30 flex items-center justify-between px-4 sm:px-10 pt-5 sm:pt-7 pointer-events-none">
+            <div class="flex items-center gap-3 pointer-events-auto">
+                <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/10 backdrop-blur-md border border-white/15 flex items-center justify-center shadow-lg">
+                    <svg class="w-4 h-4 sm:w-5 sm:h-5 text-indigo-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M2 12c0-4.4 4.5-8 10-8s10 3.6 10 8-4.5 8-10 8-10-3.6-10-8z" />
+                        <path d="M12 4v16" stroke-opacity="0.4" />
+                        <path d="M6 6.5c2 1.5 4 2.5 6 2.5s4-1 6-2.5" stroke-opacity="0.6" />
+                    </svg>
                 </div>
-                <p class="font-sans text-mutedText text-sm max-w-md mt-4 md:mt-0">
-                    Pilih kode referensi desain (YS-DSN-001 s/d YS-DSN-020) untuk melihat demo atau memesan tampilan serupa.
-                </p>
+                <div>
+                    <span class="font-semibold tracking-tight text-white text-xs sm:text-base"><span class="text-indigo-400"></span></span>
+                    <span class="hidden sm:inline-block ml-2 text-[10px] sm:text-[11px] uppercase tracking-widest px-2 py-0.5 rounded-full bg-white/5 border border-white/10 text-zinc-400">
+                        CSS Compositor Engine
+                    </span>
+                </div>
+            </div>
+            
+            </div>
+ 
+        <!-- 3D Cylindrical TiltedGrid Stage -->
+        <div
+            id="tgh-stage"
+            aria-hidden="true"
+            class="pointer-events-auto absolute inset-0 opacity-0 transition-opacity duration-700"
+        ></div>
+
+        <!-- Vignette Transparan -->
+        <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#080503]/50 via-transparent to-[#080503]/60 z-10"></div>
+
+        <!-- Hero Typography & Glassmorphism Callout (Didorong ke atas dengan -mt-6 sm:-mt-8) -->
+        <div class="relative z-20 flex flex-col items-center text-center px-4 -mt-6 sm:-mt-8 pointer-events-none">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.06] border border-white/10 backdrop-blur-md text-[10px] sm:text-xs text-zinc-300 mb-2 shadow-xl">
+                <span class="text-indigo-400 font-semibold"></span>
+                <span class="text-zinc-600"></span>
+                <span></span>
             </div>
 
-            <!-- Kontainer 20 Bingkai Katalog (Di-render otomatis lewat JavaScript) -->
-            <div id="design-frames-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+            <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-zinc-400 max-w-7xl leading-[1.1]">
+                CONTOH KARYA DESIGN TERATAS
+            </h2>
+
+            <p class="mt-2 text-xs sm:text-sm text-zinc-400 max-w-md sm:max-w-xl leading-relaxed font-normal px-2">
+              </p>
         </div>
+
+        <!-- Subtle Bottom Spacing -->
+        <div class="h-4"></div>
     </section>
 
     <!-- LAYANAN & PAKET HARGA -->
-    <section id="layanan" class="py-24 border-t border-slateBorder/60">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center max-w-2xl mx-auto mb-16">
+    <section id="layanan" class="py-16 sm:py-24 border-t border-slateBorder/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="text-center max-w-2xl mx-auto mb-12 sm:mb-16">
                 <span class="font-mono text-xs text-copper tracking-widest uppercase block mb-2">INVESTASI TERBAIK</span>
-                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Paket Jasa Pembuatan Website</h2>
-                <p class="font-sans text-mutedText text-sm mt-4">Transparan, tanpa biaya tersembunyi, dan dikerjakan langsung oleh tim ahli YUDHA STUDIO.</p>
+                <h2 class="font-heading font-extrabold text-2xl sm:text-4xl tracking-tight">Paket Jasa Pembuatan Website</h2>
+                <p class="font-sans text-mutedText text-xs sm:text-sm mt-3">Transparan, tanpa biaya tersembunyi, dan dikerjakan langsung oleh tim ahli YUDHA STUDIO.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                 <!-- Paket Starter -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
                     <div>
                         <span class="font-mono text-xs text-mutedText block mb-2">SKU-PKG-01</span>
-                        <h3 class="font-heading font-bold text-xl text-white mb-2">Starter Professional</h3>
+                        <h3 class="font-heading font-bold text-lg sm:text-xl text-white mb-2">Starter Professional</h3>
                         <p class="font-sans text-xs text-mutedText mb-6">Cocok untuk UMKM, profil profesional, dan landing page produk.</p>
                         <div class="mb-6 pb-6 border-b border-slateBorder">
-                            <span class="font-heading font-extrabold text-3xl text-white">Rp 2.5jt</span>
+                            <span class="font-heading font-extrabold text-2xl sm:text-3xl text-white">Rp 2.5jt</span>
                             <span class="font-sans text-xs text-mutedText block mt-1">Satu kali pembayaran</span>
                         </div>
-                        <ul class="space-y-3 font-sans text-sm text-mutedText mb-8">
+                        <ul class="space-y-3 font-sans text-xs sm:text-sm text-mutedText mb-8">
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Hingga 5 Halaman Responsif</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Desain Estetik & Modern</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Gratis Domain .com (1 Tahun)</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Optimasi Kecepatan & SEO Dasar</span></li>
                         </ul>
                     </div>
-                    <a href="#kontak" onclick="selectSku('SKU-PKG-01')" class="w-full py-3 rounded-xl glass-card hover:bg-copper hover:text-white font-heading font-semibold text-center text-sm transition-all">Pilih Paket Starter</a>
+                    <a href="#kontak" onclick="selectSku('SKU-PKG-01')" class="w-full py-3 rounded-xl glass-card hover:bg-copper hover:text-white font-heading font-semibold text-center text-xs sm:text-sm transition-all">Pilih Paket Starter</a>
                 </div>
 
                 <!-- Paket Business -->
-                <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between border-copper relative shadow-xl shadow-copper/10">
-                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-copper text-white px-3 py-1 rounded-full font-mono text-xs font-bold">
+                <div class="glass-panel rounded-2xl p-6 sm:p-8 flex flex-col justify-between border-copper relative shadow-xl shadow-copper/15">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-copper text-white px-3 py-1 rounded-full font-mono text-[10px] sm:text-xs font-bold">
                         PALING DIMINATI
                     </div>
                     <div>
                         <span class="font-mono text-xs text-gold block mb-2">SKU-PKG-02</span>
-                        <h3 class="font-heading font-bold text-xl text-white mb-2">Business Advance</h3>
+                        <h3 class="font-heading font-bold text-lg sm:text-xl text-white mb-2">Business Advance</h3>
                         <p class="font-sans text-xs text-mutedText mb-6">Solusi lengkap untuk perusahaan, instansi, dan toko online berkembang.</p>
                         <div class="mb-6 pb-6 border-b border-slateBorder">
-                            <span class="font-heading font-extrabold text-3xl text-white">Rp 5.5jt</span>
+                            <span class="font-heading font-extrabold text-2xl sm:text-3xl text-white">Rp 5.5jt</span>
                             <span class="font-sans text-xs text-mutedText block mt-1">Satu kali pembayaran</span>
                         </div>
-                        <ul class="space-y-3 font-sans text-sm text-mutedText mb-8">
+                        <ul class="space-y-3 font-sans text-xs sm:text-sm text-mutedText mb-8">
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Halaman & Katalog Tak Terbatas</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Fitur 3D Mockup / Animasi Custom</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Integrasi E-Commerce / Pembayaran</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>SEO On-Page & Keamanan Tingkat Lanjut</span></li>
                         </ul>
                     </div>
-                    <a href="#kontak" onclick="selectSku('SKU-PKG-02')" class="w-full py-3 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center text-sm transition-all shadow-lg shadow-copper/25">Pilih Paket Business</a>
+                    <a href="#kontak" onclick="selectSku('SKU-PKG-02')" class="w-full py-3 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center text-xs sm:text-sm transition-all shadow-lg shadow-copper/25">Pilih Paket Business</a>
                 </div>
 
                 <!-- Paket Enterprise -->
-                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                <div class="glass-card rounded-2xl p-6 sm:p-8 flex flex-col justify-between">
                     <div>
                         <span class="font-mono text-xs text-mutedText block mb-2">SKU-PKG-03</span>
-                        <h3 class="font-heading font-bold text-xl text-white mb-2">Enterprise Bespoke</h3>
+                        <h3 class="font-heading font-bold text-lg sm:text-xl text-white mb-2">Enterprise Bespoke</h3>
                         <p class="font-sans text-xs text-mutedText mb-6">Sistem web kustom skala besar, aplikasi SaaS, dan integrasi API khusus.</p>
                         <div class="mb-6 pb-6 border-b border-slateBorder">
-                            <span class="font-heading font-extrabold text-3xl text-white">Custom</span>
+                            <span class="font-heading font-extrabold text-2xl sm:text-3xl text-white">Custom</span>
                             <span class="font-sans text-xs text-mutedText block mt-1">Berdasarkan tingkat kerumitan</span>
                         </div>
-                        <ul class="space-y-3 font-sans text-sm text-mutedText mb-8">
+                        <ul class="space-y-3 font-sans text-xs sm:text-sm text-mutedText mb-8">
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Arsitektur Full-Stack Kustom</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Database & Manajemen Klien Khusus</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Dukungan Teknis Prioritas 24/7</span></li>
                             <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Garansi Performa & Keamanan Penuh</span></li>
                         </ul>
                     </div>
-                    <a href="#kontak" onclick="selectSku('SKU-PKG-03')" class="w-full py-3 rounded-xl glass-card hover:bg-copper hover:text-white font-heading font-semibold text-center text-sm transition-all">Konsultasikan Kebutuhan</a>
+                    <a href="#kontak" onclick="selectSku('SKU-PKG-03')" class="w-full py-3 rounded-xl glass-card hover:bg-copper hover:text-white font-heading font-semibold text-center text-xs sm:text-sm transition-all">Konsultasikan Kebutuhan</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- TENTANG KAMI -->
-    <section id="tentang" class="py-24 border-t border-slateBorder/60 bg-slateDark/30">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-6 space-y-6">
+    <section id="tentang" class="py-16 sm:py-24 border-t border-slateBorder/60 bg-slateDark/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div class="lg:col-span-6 space-y-4 sm:space-y-6">
                 <span class="font-mono text-xs text-copper tracking-widest uppercase block">TENTANG YUDHA STUDIO</span>
-                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Keahlian Rekayasa & Estetika Visual</h2>
-                <p class="font-sans text-mutedText text-sm sm:text-base leading-relaxed">
+                <h2 class="font-heading font-extrabold text-2xl sm:text-4xl tracking-tight">Keahlian Rekayasa & Estetika Visual</h2>
+                <p class="font-sans text-mutedText text-xs sm:text-base leading-relaxed">
                     YUDHA STUDIO didirikan dengan komitmen untuk menghadirkan karya digital berkualitas tinggi. Kami percaya bahwa website bukan sekadar halaman informasi, melainkan representasi utama kredibilitas dan mesin pertumbuhan bisnis Anda di era digital.
                 </p>
             </div>
             <div class="lg:col-span-6">
-                <div class="glass-panel p-8 rounded-2xl border border-slateBorder space-y-6">
-                    <h3 class="font-heading font-bold text-xl text-white">Komitmen Layanan Kami</h3>
-                    <div class="space-y-4 font-sans text-sm text-mutedText">
+                <div class="glass-panel p-6 sm:p-8 rounded-2xl border border-slateBorder space-y-6">
+                    <h3 class="font-heading font-bold text-lg sm:text-xl text-white">Komitmen Layanan Kami</h3>
+                    <div class="space-y-4 font-sans text-xs sm:text-sm text-mutedText">
                         <div class="flex items-start space-x-3">
-                            <span class="text-copper font-bold text-lg">01</span>
+                            <span class="text-copper font-bold text-base sm:text-lg">01</span>
                             <div>
                                 <strong class="text-white block">Ketepatan Waktu Pengerjaan</strong>
                                 <span>Proyek diselesaikan sesuai estimasi jadwal yang disepakati dengan laporan berkala.</span>
                             </div>
                         </div>
                         <div class="flex items-start space-x-3">
-                            <span class="text-copper font-bold text-lg">02</span>
+                            <span class="text-copper font-bold text-base sm:text-lg">02</span>
                             <div>
                                 <strong class="text-white block">Revisi Fleksibel</strong>
                                 <span>Kami mendengarkan masukan Anda hingga detail visual dan fungsionalitas sempurna.</span>
@@ -615,17 +783,17 @@
     </section>
 
     <!-- KONTAK / FORMULIR PEMESANAN -->
-    <section id="kontak" class="py-24 border-t border-slateBorder/60">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="max-w-3xl mx-auto glass-panel p-8 sm:p-12 rounded-2xl border border-slateBorder shadow-2xl">
-                <div class="text-center mb-10">
+    <section id="kontak" class="py-16 sm:py-24 border-t border-slateBorder/60">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6">
+            <div class="max-w-3xl mx-auto glass-panel p-6 sm:p-12 rounded-2xl border border-slateBorder shadow-2xl">
+                <div class="text-center mb-8 sm:mb-10">
                     <span class="font-mono text-xs text-copper tracking-widest uppercase block mb-2">MULAI PROYEK ANDA</span>
-                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Hubungi YUDHA STUDIO</h2>
-                    <p class="font-sans text-mutedText text-sm mt-2">Isi formulir di bawah atau hubungi kami langsung via WhatsApp untuk melihat demo penuh & konsultasi cepat.</p>
+                    <h2 class="font-heading font-extrabold text-2xl sm:text-4xl tracking-tight">Hubungi YUDHA STUDIO</h2>
+                    <p class="font-sans text-mutedText text-xs sm:text-sm mt-2">Isi formulir di bawah atau hubungi kami langsung via WhatsApp untuk konsultasi cepat.</p>
                 </div>
 
-                <form id="contact-form" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <form id="contact-form" class="space-y-4 sm:space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
                             <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Nama Lengkap</label>
                             <input type="text" id="name" required class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors" placeholder="Masukkan nama Anda">
@@ -636,7 +804,7 @@
                         </div>
                     </div>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                         <div>
                             <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Pilih Katalog / Layanan (SKU)</label>
                             <select id="service" class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors">
@@ -645,7 +813,7 @@
                                 <option value="YS-PRJ-003">YS-PRJ-003 - SaaS Web Application</option>
                                 <option value="SKU-PKG-01">SKU-PKG-01 - Paket Starter Professional</option>
                                 <option value="SKU-PKG-02">SKU-PKG-02 - Paket Business Advance</option>
-                                <option value="CUSTOM-DESIGN">Referensi Daftar Design (YS-DSN-001 s/d 020)</option>
+                                <option value="CUSTOM-DESIGN">Referensi Contoh Design 3D Showcase (001-020)</option>
                             </select>
                         </div>
                         <div>
@@ -656,10 +824,10 @@
 
                     <div>
                         <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Detail Kebutuhan / Pesan</label>
-                        <textarea id="message" rows="4" required class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors" placeholder="Ceritakan konsep website yang ingin Anda buat atau minta akses full demo..."></textarea>
+                        <textarea id="message" rows="4" required class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors" placeholder="Ceritakan konsep website yang ingin Anda buat..."></textarea>
                     </div>
 
-                    <button type="submit" class="w-full py-4 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center text-sm transition-all shadow-lg shadow-copper/25 flex items-center justify-center space-x-2">
+                    <button type="submit" class="w-full py-3.5 sm:py-4 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center text-xs sm:text-sm transition-all shadow-lg shadow-copper/25 flex items-center justify-center space-x-2">
                         <span>Kirim Konsultasi via WhatsApp</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </button>
@@ -669,15 +837,15 @@
     </section>
 
     <!-- FOOTER -->
-    <footer class="border-t border-slateBorder bg-slateDark/60 py-12">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+    <footer class="border-t border-slateBorder bg-slateDark/60 py-8 sm:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 text-center md:text-left">
             <div class="flex items-center space-x-3">
                 <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slateDark to-obsidian border border-gold/40 flex items-center justify-center text-gold font-heading font-bold text-sm">
                     Y
                 </div>
-                <span class="font-heading font-bold text-lg text-white">YUDHA STUDIO</span>
+                <span class="font-heading font-bold text-base sm:text-lg text-white">YUDHA STUDIO</span>
             </div>
-            <p class="font-sans text-xs text-mutedText text-center">
+            <p class="font-sans text-xs text-mutedText">
                 &copy; 2026 YUDHA STUDIO. Seluruh hak cipta dilindungi undang-undang. Jasa Pembuatan Website Profesional.
             </p>
             <div class="flex space-x-6 font-mono text-xs text-mutedText">
@@ -690,44 +858,210 @@
     <!-- Skrip JavaScript & Library 3D Tilt -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
-        // 1. Render 20 Bingkai Katalog Desain Otomatis
-        const framesGrid = document.getElementById('design-frames-grid');
-        if (framesGrid) {
-            let framesHTML = '';
+        // 1. 3D Cylindrical Panoramic Showcase Engine (Gambar diperbesar: tileHeight = 30)
+        (() => {
+            const GALLERY_IMAGES = [];
             for (let i = 1; i <= 20; i++) {
-                const num = String(i).padStart(2, '0');
-                const code = `YS-DSN-0${num}`;
-                framesHTML += `
-                <div class="glass-card rounded-xl p-4 flex flex-col justify-between group">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <span class="font-mono text-xs text-copper bg-copper/10 px-2.5 py-1 rounded border border-copper/20">${code}</span>
-                            <span class="font-mono text-[10px] text-mutedText">Slot ${num}</span>
-                        </div>
-                        <div class="h-44 rounded-lg bg-[#090A0D] mb-3 overflow-hidden relative border border-slateBorder flex flex-col">
-                            <div class="h-5 bg-[#15171B] border-b border-slateBorder/80 px-2.5 flex items-center justify-between">
-                                <div class="flex space-x-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500/70"></span>
-                                    <span class="w-1.5 h-1.5 rounded-full bg-yellow-500/70"></span>
-                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500/70"></span>
-                                </div>
-                                <span class="font-mono text-[8px] text-mutedText">preview-${num}.yudhastudio.id</span>
-                            </div>
-                            <div class="flex-1 flex flex-col items-center justify-center p-4 text-center border-2 border-dashed border-slateBorder/50 m-2 rounded">
-                                <span class="font-mono text-xs text-gold/80">BINGKAI KATALOG ${num}</span>
-                                <span class="font-sans text-[10px] text-mutedText mt-1">Area Gambar / Pratinjau UI</span>
-                            </div>
-                        </div>
-                        <h3 class="font-heading font-bold text-base text-white">Referensi Desain #${num}</h3>
-                    </div>
-                    <div class="pt-3 mt-3 border-t border-slateBorder/70 flex items-center justify-between">
-                        <span class="font-mono text-[11px] text-mutedText">Siap Kustomisasi</span>
-                        <a href="#kontak" onclick="selectCustomSku('${code}')" class="text-xs font-mono text-copper hover:underline">Pilih &rarr;</a>
-                    </div>
-                </div>`;
+                const numStr = String(i).padStart(3, '0');
+                GALLERY_IMAGES.push({
+                    src: `${numStr}.png`,
+                    alt: `Contoh Design Showcase #${numStr}`,
+                    code: `YS-DSN-${numStr}`
+                });
             }
-            framesGrid.innerHTML = framesHTML;
-        }
+
+            GALLERY_IMAGES.forEach((item, idx) => {
+                const pre = new Image();
+                pre.onerror = () => {
+                    item.src = `https://placehold.co/960x540/18181b/a5b4fc?text=Design+${String(idx + 1).padStart(3, '0')}.png`;
+                };
+                pre.src = item.src;
+            });
+
+            const SLICES = 16;
+            const CAMERA = 1.6;
+            const MAX_WIDTH = 60; // Ditingkatkan sedikit agar proporsional dengan tinggi baru
+
+            const CONFIG = {
+                speed: 12,
+                tileHeight: 30, // Diperbesar dari 26 ke 30 agar gambar lebih besar
+                aspectRatio: 16 / 9,
+                gap: 5,
+                axis: 68,
+                curve: 45,
+                fade: 12
+            };
+
+            const heroEl = document.getElementById("daftar-design");
+            const stageEl = document.getElementById("tgh-stage");
+            const keyframesStyleEl = document.getElementById("tgh-dynamic-keyframes");
+
+            if (!heroEl || !stageEl || !keyframesStyleEl) return;
+
+            function arc(bendRad) {
+                return (CAMERA - 1 + Math.cos(bendRad)) / (2 * CAMERA * Math.sin(bendRad));
+            }
+
+            function measure(width, height, tile, aspect, gap, bendRad) {
+                const h = Math.min(
+                    (tile / 100) * height,
+                    ((MAX_WIDTH / 100) * width) / aspect
+                );
+                const radius = width * arc(bendRad);
+                if (!(h > 0) || !(radius > 0)) {
+                    return { columns: 2, sweep: 0, unit: 0, limit: 0 };
+                }
+                const deg = (rad) => (rad * 180) / Math.PI;
+                const unit = deg(h / radius);
+                const pitch = (aspect + gap / 100) * unit;
+                const limit = deg(bendRad) + (aspect * unit) / 2;
+                const columns = Math.min(60, Math.max(2, Math.ceil((2 * limit) / pitch)));
+                const round = (n) => +n.toFixed(4);
+                const sweep = round((columns * pitch) / 2);
+                return {
+                    columns,
+                    sweep,
+                    unit: round(unit),
+                    limit: round(Math.min(sweep, limit))
+                };
+            }
+
+            let lastLayoutKey = "";
+            let viewportSize = { width: heroEl.clientWidth || window.innerWidth, height: heroEl.clientHeight || window.innerHeight };
+            let shownMap = {};
+
+            function buildStage(forceRebuild = false) {
+                const { width, height } = viewportSize;
+                const bendRad = (Math.min(85, Math.max(5, CONFIG.curve)) * Math.PI) / 180;
+                const layout = measure(
+                    width,
+                    height,
+                    CONFIG.tileHeight,
+                    CONFIG.aspectRatio,
+                    CONFIG.gap,
+                    bendRad
+                );
+
+                const { columns, sweep, unit, limit } = layout;
+                const r = 100 * arc(bendRad);
+                const radius = `${+r.toFixed(3)}cqw`;
+                const rNum = +(r * CAMERA).toFixed(3);
+                const hide = +(((sweep - limit) / (2 * sweep || 1)) * 100).toFixed(4);
+                const duration = columns * CONFIG.speed;
+
+                const maxWidthUnit = +(MAX_WIDTH / CONFIG.aspectRatio).toFixed(4);
+                const u = (n) =>
+                    `calc(${+n.toFixed(4)} * min(${CONFIG.tileHeight}cqh, ${maxWidthUnit}cqw))`;
+
+                const turn = (deg) =>
+                    `translateZ(${radius}) rotateY(${+deg.toFixed(4)}deg) translateZ(-${radius})`;
+
+                keyframesStyleEl.textContent = `
+                    @keyframes tgh-orbit {
+                        from { transform: ${turn(-sweep)}; }
+                        to   { transform: ${turn(sweep)}; }
+                        0%, ${hide}%, ${100 - hide}%, 100% { visibility: hidden; }
+                        ${hide + 0.001}%, ${100 - hide - 0.001}% { visibility: visible; }
+                    }
+                `;
+
+                const mask = `linear-gradient(90deg, transparent, #000 ${CONFIG.fade}%, #000 ${100 - CONFIG.fade}%, transparent)`;
+                stageEl.style.perspective = `${rNum}cqw`;
+                stageEl.style.perspectiveOrigin = `50% ${CONFIG.axis}%`;
+                stageEl.style.maskImage = mask;
+                stageEl.style.webkitMaskImage = mask;
+
+                const layoutKey = `${columns}|${CONFIG.tileHeight}|${CONFIG.gap}|${CONFIG.curve}|${CONFIG.axis}|${CONFIG.speed}`;
+                if (!forceRebuild && layoutKey === lastLayoutKey) return;
+                lastLayoutKey = layoutKey;
+
+                const share = CONFIG.aspectRatio / SLICES;
+                const fragment = document.createDocumentFragment();
+
+                for (let t = 0; t < columns; t++) {
+                    const first = columns - 1 - t;
+                    const imgIdx = (shownMap[t] ?? first) % GALLERY_IMAGES.length;
+                    const imgData = GALLERY_IMAGES[imgIdx];
+
+                    const tileEl = document.createElement("div");
+                    tileEl.className = "tgh-tile";
+                    tileEl.style.left = `calc(50% - ${u(CONFIG.aspectRatio / 2)})`;
+                    tileEl.style.top = `calc(${CONFIG.axis}% - ${u(0.5)})`;
+                    tileEl.style.width = u(CONFIG.aspectRatio);
+                    tileEl.style.height = u(1);
+                    tileEl.style.animation = `tgh-orbit ${duration}s linear ${-t * CONFIG.speed}s infinite`;
+
+                    // Event Klik pada Tile 3D untuk Memilih Design & Mengarah ke Form Kontak
+                    tileEl.addEventListener("click", () => {
+                        const selectEl = document.getElementById('service');
+                        const messageEl = document.getElementById('message');
+                        if (selectEl) selectEl.value = 'CUSTOM-DESIGN';
+                        if (messageEl) {
+                            messageEl.value = `Halo YUDHA STUDIO, saya tertarik dengan contoh desain ${imgData.alt} (${imgData.code}). Mohon info detailnya.`;
+                        }
+                        document.getElementById('kontak').scrollIntoView({ behavior: 'smooth' });
+                    });
+
+                    const sliceImgs = [];
+
+                    for (let k = 0; k < SLICES; k++) {
+                        const sliceEl = document.createElement("div");
+                        sliceEl.className = "tgh-slice";
+                        if (k === 0) sliceEl.style.borderRadius = "0.5rem 0 0 0.5rem";
+                        if (k === SLICES - 1) sliceEl.style.borderRadius = "0 0.5rem 0.5rem 0";
+
+                        sliceEl.style.left = u((CONFIG.aspectRatio - share) / 2);
+                        sliceEl.style.width =
+                            k === SLICES - 1 ? u(share) : `calc(${u(share)} + 1px)`;
+                        sliceEl.style.height = u(1);
+
+                        const sliceAngle = (CONFIG.aspectRatio / 2 - (k + 0.5) * share) * unit;
+                        sliceEl.style.transform = turn(sliceAngle);
+
+                        const imgEl = document.createElement("img");
+                        imgEl.src = imgData.src;
+                        imgEl.alt = k === 0 ? imgData.alt : "";
+                        imgEl.draggable = false;
+                        imgEl.style.left = u(-k * share);
+                        imgEl.style.width = u(CONFIG.aspectRatio);
+                        imgEl.style.height = u(1);
+
+                        sliceEl.appendChild(imgEl);
+                        tileEl.appendChild(sliceEl);
+                        sliceImgs.push(imgEl);
+                    }
+
+                    tileEl.addEventListener("animationiteration", (e) => {
+                        const lap = Math.round(e.elapsedTime / duration);
+                        const nextPos = lap * columns + first;
+                        if (shownMap[t] !== nextPos) {
+                            shownMap[t] = nextPos;
+                            const nextImg = GALLERY_IMAGES[nextPos % GALLERY_IMAGES.length];
+                            for (let s = 0; s < sliceImgs.length; s++) {
+                                sliceImgs[s].src = nextImg.src;
+                            }
+                        }
+                    });
+
+                    fragment.appendChild(tileEl);
+                }
+
+                stageEl.innerHTML = "";
+                stageEl.appendChild(fragment);
+                stageEl.style.opacity = "1";
+            }
+
+            const ro = new ResizeObserver(([entry]) => {
+                const { width, height } = entry.contentRect;
+                if (width > 0 && height > 0) {
+                    viewportSize = { width, height };
+                    buildStage(false);
+                }
+            });
+            ro.observe(heroEl);
+
+            buildStage(true);
+        })();
 
         // 2. Inisialisasi Efek 3D Tilt pada Kartu
         document.addEventListener("DOMContentLoaded", function() {
@@ -744,13 +1078,6 @@
         function selectSku(skuCode) {
             const selectEl = document.getElementById('service');
             if (selectEl) selectEl.value = skuCode;
-        }
-
-        function selectCustomSku(dsnCode) {
-            const selectEl = document.getElementById('service');
-            const messageEl = document.getElementById('message');
-            if (selectEl) selectEl.value = 'CUSTOM-DESIGN';
-            if (messageEl) messageEl.value = `Halo YUDHA STUDIO, saya tertarik dengan referensi desain kode: ${dsnCode}. Mohon info detail dan demo lengkapnya.`;
         }
 
         // 4. Generator 120 Partikel Bara Api Kecil
@@ -804,7 +1131,7 @@
             const promo = document.getElementById('promo').value;
             const message = document.getElementById('message').value;
 
-            const text = `Halo YUDHA STUDIO,%0A%0ASaya ingin memesan/melihat full demo untuk layanan web:%0A- Nama: ${name}%0A- No WhatsApp: ${phone}%0A- Pilihan SKU: ${service}%0A- Kode Promo: ${promo}%0A- Pesan: ${message}`;
+            const text = `Halo YUDHA STUDIO,%0A%0ASaya ingin memesan layanan web:%0A- Nama: ${name}%0A- No WhatsApp: ${phone}%0A- Pilihan SKU: ${service}%0A- Kode Promo: ${promo}%0A- Pesan: ${message}`;
             
             const waUrl = `https://wa.me/6285820289288?text=${text}`;
             window.open(waUrl, '_blank');
