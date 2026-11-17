@@ -1,547 +1,814 @@
- <!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-    <title>YUDHA STUDIO — Creative Design & Web Architecture Studio</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YUDHA STUDIO — Jasa Pembuatan Website Profesional & Kreatif</title>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter untuk Keterbacaan Optimal -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'Inter', 'sans-serif'],
-                        serif: ['"Instrument Serif"', 'Playfair Display', 'serif'],
-                    },
                     colors: {
-                        cream: {
-                            DEFAULT: '#F5EFE6',
-                            soft: '#FAF7F2',
-                            border: '#EADFCF',
-                        },
-                        accent: {
-                            DEFAULT: '#DE5D35',
-                            hover: '#C84E28',
-                        },
-                        charcoal: {
-                            DEFAULT: '#161514',
-                            muted: '#635E59',
-                        }
+                        obsidian: '#0C0D0F',
+                        slateDark: '#15171B',
+                        slateBorder: '#23262E',
+                        copper: '#E05A36',
+                        gold: '#C8A96E',
+                        alabaster: '#F4F1EA',
+                        mutedText: '#94A3B8'
+                    },
+                    fontFamily: {
+                        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        sans: ['"Inter"', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
                     }
                 }
             }
         }
     </script>
-
-    <!-- Lucide Icons CDN -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-
     <style>
-        :root {
-            color-scheme: light;
-            box-sizing: border-box;
-            --mouse-x: 50%;
-            --mouse-y: 50%;
+        body { font-family: 'Inter', sans-serif; background-color: #080503; color: #F4F1EA; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .font-mono { font-family: 'JetBrains Mono', monospace; }
+        .glass-panel {
+            background: rgba(21, 23, 27, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
-
-        body {
-            background-color: #FFFFFF;
-            color: #161514;
-            overflow-x: hidden;
-            margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
+        .glass-card {
+            background: rgba(21, 23, 27, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: border-color 0.3s ease, transform 0.1s ease;
+            transform-style: preserve-3d;
+            perspective: 1000px;
         }
-
-        #bg {
+        .glass-card:hover {
+            border-color: rgba(224, 90, 54, 0.45);
+        }
+        .glass-card > div {
+            transform: translateZ(20px);
+        }
+        .preview-cutoff {
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 85%, rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 45%, rgba(0,0,0,0.15) 85%, rgba(0,0,0,0) 100%);
+        }
+        /* Background Bintik Api (Fixed agar tidak ikut terscroll) */
+        .fire-bg {
             position: fixed;
-            inset: 0;
+            top: 0;
+            left: 0;
             width: 100vw;
             height: 100vh;
             z-index: 0;
-            display: block;
-            background: #FFFFFF;
             pointer-events: none;
         }
-
-        .content-layer {
-            position: relative;
-            z-index: 10;
-        }
-
-        .perspective-container {
-            perspective: 1200px;
-        }
-
-        .card-3d {
-            transform-style: preserve-3d;
-            transition: transform 0.15s ease-out, box-shadow 0.3s ease;
-            position: relative;
-            will-change: transform;
-        }
-
-        .card-3d:hover {
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1), 0 0 35px rgba(222, 93, 53, 0.1);
-        }
-
-        .card-glare {
+        .spark {
             position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            pointer-events: none;
-            background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(222, 93, 53, 0.06) 0%, transparent 65%);
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 20;
-        }
-
-        .card-3d:hover .card-glare {
-            opacity: 1;
-        }
-
-        .reveal-3d {
-            opacity: 0;
-            transform: perspective(1000px) translateY(45px) rotateX(12deg) scale(0.96);
-            transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal-3d.is-visible {
-            opacity: 1;
-            transform: perspective(1000px) translateY(0) rotateX(0deg) scale(1);
-        }
-
-        .btn-3d {
-            position: relative;
-            overflow: hidden;
-            transform-style: preserve-3d;
-            transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, background-color 0.2s ease;
-        }
-
-        .btn-3d:hover {
-            transform: translateY(-3px) scale(1.02);
-        }
-
-        .btn-3d:active {
-            transform: translateY(2px) scale(0.96);
-        }
-
-        .ripple-effect {
-            position: absolute;
+            background: #ffaa33;
             border-radius: 50%;
-            transform: scale(0);
-            animation: rippleAnim 0.6s linear;
-            background-color: rgba(255, 255, 255, 0.3);
-            pointer-events: none;
+            box-shadow: 0 0 6px #ff4500, 0 0 12px #ff8c00;
+            animation: riseUp linear infinite;
         }
-
-        @keyframes rippleAnim {
-            to {
-                transform: scale(4);
+        @keyframes riseUp {
+            0% {
+                transform: translateY(105vh) translateX(0) scale(0.3);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.9;
+            }
+            80% {
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(var(--random-x)) scale(1);
                 opacity: 0;
             }
         }
 
-        ::-webkit-scrollbar {
-            width: 8px;
+        /* Animasi Melayang & Kepak Sayap Phoenix (Fixed di tengah layar) */
+        .phoenix-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 0;
+            pointer-events: none;
+            width: min(450px, 85vw);
+            height: auto;
+            opacity: 0.85;
+            animation: phoenixFloat 6s ease-in-out infinite;
         }
-        ::-webkit-scrollbar-track {
-            background: transparent;
+
+        @keyframes phoenixFloat {
+            0%, 100% {
+                transform: translate(-50%, -52%) scale(1) rotate(0deg);
+                filter: drop-shadow(0 0 20px rgba(255, 140, 0, 0.4));
+            }
+            50% {
+                transform: translate(-50%, -48%) scale(1.04) rotate(1deg);
+                filter: drop-shadow(0 0 35px rgba(255, 174, 66, 0.7));
+            }
         }
-        ::-webkit-scrollbar-thumb {
-            background: #D4C4B0;
-            border-radius: 9999px;
+
+        .phoenix-wings {
+            transform-origin: center;
+            animation: phoenixWingBeat 3s ease-in-out infinite;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #DE5D35;
+
+        @keyframes phoenixWingBeat {
+            0%, 100% {
+                transform: scaleY(1) rotate(0deg);
+            }
+            50% {
+                transform: scaleY(0.92) rotate(-1.5deg);
+            }
         }
+
+        /* Memastikan konten berada di lapisan depan */
+        header, section, footer {
+            position: relative;
+            z-index: 10;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #080503; }
+        ::-webkit-scrollbar-thumb { background: #23262E; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E05A36; }
     </style>
 </head>
-<body class="antialiased selection:bg-accent selection:text-white">
+<body class="bg-[#080503] text-alabaster antialiased selection:bg-copper selection:text-white">
 
-    <script>
-        const NOMOR_WHATSAPP = "6285820289288";
-    </script>
+    <!-- Kontainer Partikel Bara Api -->
+    <div class="fire-bg" id="fireContainer"></div>
 
-    <!-- Kanvas Animasi Api 3D -->
-    <canvas id="bg" aria-hidden="true"></canvas>
+    <!-- Animasi Burung Phoenix Emas Transparan -->
+    <div class="phoenix-container">
+        <svg viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+            <defs>
+                <linearGradient id="phoenixGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#ffae42" />
+                    <stop offset="50%" stop-color="#ff4500" />
+                    <stop offset="100%" stop-color="#e05a36" />
+                </linearGradient>
+                <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="8" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+            </defs>
+            <g filter="url(#glow)">
+                <path d="M250 280C240 240 220 180 200 130C230 160 250 190 250 210C250 190 270 160 300 130C280 180 260 240 250 280Z" fill="url(#phoenixGrad)" opacity="0.9"/>
+                <path d="M250 270C245 310 235 345 220 380C235 365 250 330 250 270Z" fill="#ff4500"/>
+                <path d="M250 270C255 310 265 345 280 380C265 365 250 330 250 270Z" fill="#ffae42"/>
+                <path d="M250 130C245 115 242 100 245 90C250 85 255 85 260 90C263 100 255 115 250 130Z" fill="#ffae42"/>
+                <path d="M260 92L270 95L258 98Z" fill="#fff"/>
+                <g class="phoenix-wings">
+                    <path d="M225 160C180 140 120 110 70 60C100 100 140 140 190 175C170 150 150 120 130 90C165 115 195 138 225 160Z" fill="url(#phoenixGrad)"/>
+                    <path d="M275 160C320 140 380 110 430 60C400 100 360 140 310 175C330 150 350 120 370 90C335 115 305 138 275 160Z" fill="url(#phoenixGrad)"/>
+                    <path d="M190 175C150 160 100 135 60 100C85 130 125 160 165 185C150 170 135 155 120 135C145 150 170 165 190 175Z" fill="#ffae42" opacity="0.8"/>
+                    <path d="M310 175C350 160 400 135 440 100C415 130 375 160 335 185C350 170 365 155 380 135C355 150 330 165 310 175Z" fill="#ffae42" opacity="0.8"/>
+                </g>
+            </g>
+        </svg>
+    </div>
 
-    <!-- Halaman Pertama: Hero Utama -->
-    <section
-        id="yudha-hero"
-        aria-label="YUDHA STUDIO Hero"
-        class="content-layer relative w-full min-h-screen overflow-hidden bg-transparent flex flex-col justify-between"
-    >
-        <div class="relative z-10 w-full min-h-screen px-6 sm:px-12 lg:px-16 py-6 flex flex-col justify-between">
-            <header class="w-full flex items-center justify-between pt-1">
-                <a
-                    href="#"
-                    class="group inline-flex items-baseline text-2xl sm:text-[26px] font-extrabold tracking-tight text-charcoal focus:outline-none focus-visible:ring-2 focus-visible:ring-accent rounded-lg"
-                    aria-label="YUDHA STUDIO Home"
-                >
-                    <span>YUDHA STUDIO</span><span class="text-accent transition-transform duration-300 group-hover:scale-125 inline-block">.</span>
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-50 glass-panel border-b border-slateBorder/80">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-slateDark via-[#1b1e26] to-obsidian border border-gold/40 flex items-center justify-center relative overflow-hidden group-hover:border-copper group-hover:shadow-lg group-hover:shadow-copper/20 transition-all duration-300">
+                    <div class="absolute -right-4 -bottom-4 w-12 h-12 bg-gold/10 rounded-full blur-md"></div>
+                    <svg class="w-6 h-6 text-gold group-hover:text-copper transition-colors duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 5l8 10 8-10"></path>
+                        <path d="M12 15v5" stroke-width="2.5"></path>
+                        <circle cx="12" cy="4" r="1" fill="currentColor"></circle>
+                    </svg>
+                </div>
+                <div>
+                    <span class="font-heading font-extrabold text-xl tracking-tight text-white block">YUDHA STUDIO</span>
+                    <span class="font-mono text-xs text-mutedText block">WEB & DIGITAL ENGINEERING</span>
+                </div>
+            </a>
+
+            <nav class="hidden md:flex items-center space-x-8 font-sans font-medium text-sm text-mutedText">
+                <a href="#beranda" class="hover:text-alabaster transition-colors">Beranda</a>
+                <a href="#katalog" class="hover:text-alabaster transition-colors">Katalog Karya</a>
+                <a href="#daftar-design" class="hover:text-alabaster transition-colors">Daftar Design</a>
+                <a href="#layanan" class="hover:text-alabaster transition-colors">Layanan & Harga</a>
+                <a href="#tentang" class="hover:text-alabaster transition-colors">Tentang</a>
+                <a href="#kontak" class="hover:text-alabaster transition-colors">Kontak</a>
+            </nav>
+
+            <div class="hidden md:block">
+                <a href="#kontak" class="px-5 py-2.5 rounded-lg bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-sm transition-all shadow-lg shadow-copper/20">
+                    Konsultasi Gratis
                 </a>
+            </div>
 
-                <nav aria-label="Primary Navigation" class="hidden md:flex items-center gap-8 lg:gap-10">
-                    <a href="#yudha-hero" class="relative py-1 text-[15px] font-medium text-charcoal/90 hover:text-charcoal transition-colors">Overview</a>
-                    <a href="#katalog" class="relative py-1 text-[15px] font-medium text-charcoal/90 hover:text-charcoal transition-colors">17 Katalog Website Profesional Design</a>
-                    <a href="#sorotan-burger" class="relative py-1 text-[15px] font-medium text-charcoal/90 hover:text-charcoal transition-colors">Sorotan #11 Burger</a>
-                    <a href="#keunggulan" class="relative py-1 text-[15px] font-medium text-charcoal/90 hover:text-charcoal transition-colors">Garansi & Fasilitas</a>
-                </nav>
+            <button id="menu-btn" class="md:hidden text-alabaster focus:outline-none p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
 
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <a
-                        href="#katalog"
-                        class="group hidden sm:inline-flex items-center gap-2 rounded-full border border-charcoal/80 bg-cream-soft/80 backdrop-blur-sm px-5 py-2.5 text-sm font-semibold text-charcoal transition-all duration-300 hover:bg-charcoal hover:text-cream hover:border-charcoal"
-                    >
-                        <span>Jelajahi Katalog</span>
-                        <i data-lucide="arrow-down" class="w-4 h-4 transition-transform duration-300 group-hover:translate-y-1"></i>
+        <div id="mobile-menu" class="hidden md:hidden glass-panel border-t border-slateBorder px-6 py-6 space-y-4">
+            <a href="#beranda" class="block text-mutedText hover:text-alabaster font-medium">Beranda</a>
+            <a href="#katalog" class="block text-mutedText hover:text-alabaster font-medium">Katalog Karya</a>
+            <a href="#daftar-design" class="block text-mutedText hover:text-alabaster font-medium">Daftar Design</a>
+            <a href="#layanan" class="block text-mutedText hover:text-alabaster font-medium">Layanan & Harga</a>
+            <a href="#tentang" class="block text-mutedText hover:text-alabaster font-medium">Tentang</a>
+            <a href="#kontak" class="block text-mutedText hover:text-alabaster font-medium">Kontak</a>
+            <a href="#kontak" class="block text-center w-full py-3 rounded-lg bg-copper text-white font-heading font-semibold text-sm">Konsultasi Gratis</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="pt-20 pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-12 space-y-8 text-center max-w-4xl mx-auto relative">
+                <div class="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-slateDark border border-slateBorder text-xs font-mono text-gold mx-auto">
+                    <span class="w-2 h-2 rounded-full bg-copper animate-pulse"></span>
+                    <span>STUDIO PENGEMBANGAN WEB PROFESIONAL</span>
+                </div>
+                
+                <h1 class="font-heading font-extrabold text-4xl sm:text-6xl lg:text-7xl tracking-tight leading-[1.15]" style="color: #ffae42; text-shadow: 0 0 25px rgba(255, 174, 66, 0.4);">
+                    Membangun Masa Depan Digital Bisnis Anda.
+                </h1>
+                
+                <p class="font-sans text-mutedText text-base sm:text-xl leading-relaxed max-w-2xl mx-auto">
+                    YUDHA STUDIO menghadirkan solusi pembuatan website profesional berstandar tinggi. Perpaduan desain arsitektural modern, performa super cepat, dan estetika eksklusif untuk meningkatkan kredibilitas brand Anda.
+                </p>
+
+                <div class="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 pt-4">
+                    <a href="#katalog" class="px-8 py-4 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center transition-all shadow-lg shadow-copper/25 flex items-center justify-center space-x-2">
+                        <span>Jelajahi Katalog Karya</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
-
-                    <button
-                        type="button"
-                        id="mobile-menu-open"
-                        aria-label="Open navigation menu"
-                        aria-expanded="false"
-                        aria-controls="mobile-drawer"
-                        class="md:hidden inline-flex items-center justify-center p-2.5 rounded-full border border-cream-border bg-cream-soft/90 text-charcoal hover:bg-charcoal hover:text-cream transition-colors duration-200"
-                    >
-                        <i data-lucide="menu" class="w-5 h-5"></i>
-                    </button>
+                    <a href="#layanan" class="px-8 py-4 rounded-xl glass-card hover:bg-slateDark text-alabaster font-heading font-semibold text-center transition-all">
+                        Lihat Paket Harga
+                    </a>
                 </div>
-            </header>
 
-            <main class="w-full my-auto py-12 lg:py-16">
-                <div class="max-w-xl lg:max-w-[540px]">
-                    <div class="inline-flex items-center gap-2 mb-5 sm:mb-6">
-                        <p class="text-[11px] sm:text-xs font-bold uppercase tracking-[0.18em] text-accent">
-                            &bull; YUDHA STUDIO &nbsp;&bull; PROFESIONAL DESIGN &nbsp;&bull; 2026 EDITION
-                        </p>
+                <div class="grid grid-cols-3 gap-6 pt-12 border-t border-slateBorder/60 max-w-2xl mx-auto">
+                    <div>
+                        <span class="font-heading font-bold text-2xl text-white block">150+</span>
+                        <span class="font-sans text-xs text-mutedText block mt-1">Proyek Selesai</span>
                     </div>
-
-                    <h1 class="text-charcoal tracking-tight leading-[1.03]">
-                        <span class="block text-5xl sm:text-6xl lg:text-[74px] font-extrabold tracking-[-0.03em]">
-                            Ideas That
-                        </span>
-                        <span class="block font-serif italic font-normal text-6xl sm:text-7xl lg:text-[88px] text-accent -mt-1 sm:-mt-2">
-                            Inspire X.
-                        </span>
-                    </h1>
-
-                    <p class="mt-6 sm:mt-7 text-base sm:text-lg leading-relaxed text-charcoal-muted max-w-md font-normal">
-                        Studio desain kelas atas dan arsitektur web berbasis profesional design yang mengubah ide Anda menjadi pengalaman digital paling imersif.
-                    </p>
-
-                    <div class="mt-8 sm:mt-9 flex flex-wrap items-center gap-4">
-                        <a
-                            href="#katalog"
-                            class="group inline-flex items-center gap-3 rounded-full bg-charcoal px-7 py-4 text-sm sm:text-[15px] font-semibold text-cream shadow-lg shadow-charcoal/15 transition-all duration-300 hover:bg-accent hover:shadow-accent/25 active:scale-[0.98]"
-                        >
-                            <span>Lihat 17 Katalog Website Profesional Design</span>
-                            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full bg-white/10 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-                                <i data-lucide="arrow-down" class="w-4 h-4"></i>
-                            </span>
-                        </a>
-                        <button
-                            type="button"
-                            id="open-showreel-btn"
-                            class="group inline-flex items-center gap-2 rounded-full border border-charcoal/30 bg-white/70 backdrop-blur-sm px-6 py-4 text-sm sm:text-[15px] font-semibold text-charcoal hover:bg-white transition-all"
-                        >
-                            <i data-lucide="play" class="w-4 h-4 text-accent fill-accent"></i>
-                            <span>Putar Showreel</span>
-                        </button>
+                    <div>
+                        <span class="font-heading font-bold text-2xl text-white block">99.8%</span>
+                        <span class="font-sans text-xs text-mutedText block mt-1">Kepuasan Klien</span>
+                    </div>
+                    <div>
+                        <span class="font-heading font-bold text-2xl text-white block">24/7</span>
+                        <span class="font-sans text-xs text-mutedText block mt-1">Dukungan Teknis</span>
                     </div>
                 </div>
-            </main>
-
-            <div class="w-full flex items-center justify-between text-xs text-charcoal-muted/80 pb-1">
-                <span class="hidden sm:inline-flex items-center gap-2 font-medium">
-                    <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-                    Booking Q4 / Q1 Kemitraan Desain Profesional Terbuka
-                </span>
-                <a href="#katalog" class="ml-auto font-medium tracking-wide uppercase text-[11px] text-charcoal-muted hover:text-accent transition-colors">
-                    Geser ke Halaman Katalog &darr;
-                </a>
             </div>
         </div>
     </section>
 
-    <!-- Halaman Katalog & Konten -->
-    <div class="content-layer bg-white/95 backdrop-blur-md pt-6 border-t border-slate-200">
-        <header class="sticky top-0 z-40 px-4 sm:px-6 pt-4">
-            <nav class="max-w-7xl mx-auto bg-white/95 backdrop-blur-xl border border-slate-200 rounded-2xl px-4 sm:px-6 py-3.5 flex items-center justify-between shadow-lg shadow-slate-200/50">
-                <a href="#yudha-hero" class="flex items-center gap-3 group">
-                    <div class="w-9 h-9 rounded-xl bg-red-500 text-white font-black flex items-center justify-center text-lg shadow-lg shadow-red-500/20 group-hover:rotate-12 transition-transform">
-                        Y
-                    </div>
-                    <div>
-                        <span class="font-extrabold tracking-tight text-slate-900 text-base sm:text-lg block leading-none">YUDHA STUDIO<span class="text-red-500">.</span></span>
-                        <span class="text-[10px] uppercase tracking-widest text-slate-500 font-medium">Web Architecture & 3D Profesional Design</span>
-                    </div>
-                </a>
-
-                <div class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
-                    <a href="#yudha-hero" class="hover:text-red-500 transition-colors">Studio Intro X</a>
-                    <a href="#sorotan-burger" class="hover:text-red-500 transition-colors flex items-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-orange-500 animate-ping"></span>
-                        Edisi Spesial #11
-                    </a>
-                    <a href="#katalog" class="hover:text-red-500 transition-colors">17 Katalog Website</a>
-                    <a href="#keunggulan" class="hover:text-red-500 transition-colors">Garansi & Fasilitas</a>
+    <!-- KATALOG KARYA & PRODUK (12 Item) -->
+    <section id="katalog" class="py-24 border-t border-slateBorder/60 bg-slateDark/30">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16">
+                <div>
+                    <span class="font-mono text-xs text-copper tracking-widest uppercase block mb-2">PAJANGAN & PRATINJAU LANGSUNG</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Katalog Jasa & Karya Pilihan</h2>
                 </div>
-
-                <div class="flex items-center gap-2 sm:gap-3">
-                    <button onclick="bukaModalKeranjang()" class="btn-3d relative flex items-center gap-2 bg-slate-50 hover:bg-slate-100 text-slate-700 border border-slate-200 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold">
-                        <svg class="w-4 h-4 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                        </svg>
-                        <span class="hidden sm:inline">Pilihan</span>
-                        <span id="badge-keranjang" class="bg-red-500 text-white font-extrabold text-xs px-2 py-0.5 rounded-full">0</span>
-                    </button>
-
-                    <a href="#katalog" class="btn-3d bg-red-500 hover:bg-red-600 text-white font-bold px-4 py-2.5 rounded-xl text-xs sm:text-sm shadow-lg shadow-red-500/30">
-                        Pilih Desain
-                    </a>
-                </div>
-            </nav>
-        </header>
-
-        <section class="py-20 px-4 sm:px-6 text-center">
-            <div class="max-w-4xl mx-auto space-y-6">
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-red-200 text-red-600 text-xs font-semibold tracking-wide shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                    ARSITEKTUR DIGITAL YUDHA STUDIO X PROFESIONAL DESIGN — INVESTASI 5% LEBIH RASIONAL
-                </div>
-
-                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 leading-[1.08]">
-                    Arsitektur Web Profesional Design Eksklusif. <br class="hidden sm:inline">
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-rose-600 to-amber-600">Kelas Atas, Tanpa Kompromi.</span>
-                </h1>
-
-                <p class="text-slate-700 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed font-normal bg-white/80 backdrop-blur-sm p-4 rounded-2xl border border-slate-200/50 shadow-sm">
-                    Koleksi 17 template website tingkat tinggi berbasis profesional design & 3D rancangan <strong class="text-slate-900">YUDHA STUDIO</strong>. Mengawinkan estetika visual tingkat lanjut, performa muat instan, dan struktur kode bersih siap tayang untuk bisnis Anda.
+                <p class="font-sans text-mutedText text-sm max-w-md mt-4 md:mt-0">
+                    Pratinjau antarmuka ditampilkan secara otomatis dalam mode <span class="text-gold font-mono">Teaser Terbatas</span>. Hubungi kami untuk akses demo penuh dan kustomisasi.
                 </p>
+            </div>
 
-                <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-                    <a href="#katalog" class="btn-3d bg-red-500 hover:bg-red-600 text-white font-extrabold px-7 py-4 rounded-2xl text-sm sm:text-base shadow-xl shadow-red-500/25 flex items-center gap-2">
-                        <span>Jelajahi 17 Template</span>
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path></svg>
-                    </a>
-                    <a href="#sorotan-burger" class="btn-3d bg-white/90 backdrop-blur-sm hover:bg-white text-slate-800 border border-slate-200 font-semibold px-6 py-4 rounded-2xl text-sm sm:text-base flex items-center gap-2 shadow-sm">
-                        <span>Lihat Desain #11 Burger</span>
-                        <span class="text-orange-500">🍔</span>
-                    </a>
+            <!-- Grid Katalog (12 Contoh Web) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Item 1 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-001</span>
+                            <span class="font-mono text-xs text-mutedText">Corporate</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Executive Company Profile</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website profil perusahaan tingkat lanjut dengan animasi halus dan tata letak eksklusif.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 3.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-001')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-001 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-002</span>
+                            <span class="font-mono text-xs text-mutedText">E-Commerce</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Advanced E-Commerce Store</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Toko online lengkap dengan sistem keranjang, integrasi payment gateway, dan manajemen produk.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 5.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-002')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-002 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-003</span>
+                            <span class="font-mono text-xs text-mutedText">SaaS / App</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">SaaS Web Application</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Antarmuka dashboard web interaktif untuk layanan digital, analitik, dan manajemen cloud.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 7.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-003')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-003 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-004</span>
+                            <span class="font-mono text-xs text-mutedText">Web App</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Attendance & HR Web App</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Sistem pencatatan kehadiran karyawan dan manajemen absensi dengan laporan CSV otomatis.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 4.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-004')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-004 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-005</span>
+                            <span class="font-mono text-xs text-mutedText">Creative Agency</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Creative Agency Showcase</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website portofolio artistik dengan galeri visual dinamis untuk fotografer dan desainer.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 3.0jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-005')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-005 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-006</span>
+                            <span class="font-mono text-xs text-mutedText">Real Estate</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Real Estate Property Portal</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Katalog properti dengan fitur filter lokasi, galeri interaktif, dan formulir penjadwalan survei.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 5.0jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-006')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-006 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-007</span>
+                            <span class="font-mono text-xs text-mutedText">F&B / Culinary</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Culinary & Restaurant Menu</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website restoran elegan dengan menu digital interaktif dan sistem reservasi meja online.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 3.2jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-007')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-007 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-008</span>
+                            <span class="font-mono text-xs text-mutedText">Personal / CV</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Professional Personal Brand</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Portofolio personal interaktif dan CV digital berstandar internasional untuk profesional.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 2.5jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-008')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-008 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 9 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-009</span>
+                            <span class="font-mono text-xs text-mutedText">FinTech</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">FinTech & Digital Wallet UI</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Platform keuangan modern dengan visualisasi saldo real-time, keamanan berlapis, dan transaksi instan.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 6.8jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-009')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-009 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 10 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-010</span>
+                            <span class="font-mono text-xs text-mutedText">EdTech / LMS</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">E-Learning & Course Platform</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Portal kursus online lengkap dengan pelacakan progres belajar, kuis interaktif, dan sertifikat otomatis.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 5.2jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-010')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-010 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 11 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-011</span>
+                            <span class="font-mono text-xs text-mutedText">Healthcare</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Clinic & Healthcare Booking</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Website klinik kesehatan & rumah sakit dengan jadwal dokter real-time dan pendaftaran pasien online.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 4.2jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-011')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-011 &rarr;</a>
+                    </div>
+                </div>
+
+                <!-- Item 12 -->
+                <div class="glass-card rounded-xl p-5 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-gold bg-gold/10 px-2.5 py-1 rounded border border-gold/20">YS-PRJ-012</span>
+                            <span class="font-mono text-xs text-mutedText">Logistics</span>
+                        </div>
+                        <h3 class="font-heading font-bold text-lg text-white group-hover:text-copper transition-colors">Logistics & Tracking Portal</h3>
+                        <p class="font-sans text-xs text-mutedText mt-1.5 leading-relaxed">Sistem web ekspedisi dengan pelacakan resi real-time, kalkulator ongkos kirim, dan manajemen armada.</p>
+                    </div>
+                    <div class="pt-5 mt-5 border-t border-slateBorder flex items-center justify-between">
+                        <span class="font-heading font-semibold text-sm text-white">Mulai Rp 4.8jt</span>
+                        <a href="#kontak" onclick="selectSku('YS-PRJ-012')" class="text-xs font-mono text-copper hover:underline">Pesan SKU-012 &rarr;</a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section Sorotan #11 -->
-        <section id="sorotan-burger" class="py-14 px-4 sm:px-6 bg-white/95 backdrop-blur-md">
-            <div class="max-w-7xl mx-auto">
-                <div class="reveal-3d bg-gradient-to-br from-slate-50/95 via-white/95 to-orange-50/90 backdrop-blur-md border border-orange-200 rounded-3xl p-6 sm:p-10 shadow-xl relative overflow-hidden">
-                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                        <div class="lg:col-span-6 space-y-5">
-                            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 border border-orange-200 text-orange-700 text-xs font-bold">
-                                <span>⭐ SOROTAN DESAIN TERBARU #11</span>
+    <!-- CONTOH DAFTAR DESIGN (20 BINGKAI KATALOG WEBSITE) -->
+    <section id="daftar-design" class="py-24 border-t border-slateBorder/60 bg-obsidian/40">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-14">
+                <div>
+                    <span class="font-mono text-xs text-gold tracking-widest uppercase block mb-2">ARSIP TEMPLATE & REFERENSI UI</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight text-white">Contoh Daftar Design</h2>
+                </div>
+                <p class="font-sans text-mutedText text-sm max-w-md mt-4 md:mt-0">
+                    Pilih kode referensi desain (YS-DSN-001 s/d YS-DSN-020) untuk melihat demo atau memesan tampilan serupa.
+                </p>
+            </div>
+
+            <!-- Kontainer 20 Bingkai Katalog (Di-render otomatis lewat JavaScript) -->
+            <div id="design-frames-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+        </div>
+    </section>
+
+    <!-- LAYANAN & PAKET HARGA -->
+    <section id="layanan" class="py-24 border-t border-slateBorder/60">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="font-mono text-xs text-copper tracking-widest uppercase block mb-2">INVESTASI TERBAIK</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Paket Jasa Pembuatan Website</h2>
+                <p class="font-sans text-mutedText text-sm mt-4">Transparan, tanpa biaya tersembunyi, dan dikerjakan langsung oleh tim ahli YUDHA STUDIO.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Paket Starter -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                    <div>
+                        <span class="font-mono text-xs text-mutedText block mb-2">SKU-PKG-01</span>
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">Starter Professional</h3>
+                        <p class="font-sans text-xs text-mutedText mb-6">Cocok untuk UMKM, profil profesional, dan landing page produk.</p>
+                        <div class="mb-6 pb-6 border-b border-slateBorder">
+                            <span class="font-heading font-extrabold text-3xl text-white">Rp 2.5jt</span>
+                            <span class="font-sans text-xs text-mutedText block mt-1">Satu kali pembayaran</span>
+                        </div>
+                        <ul class="space-y-3 font-sans text-sm text-mutedText mb-8">
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Hingga 5 Halaman Responsif</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Desain Estetik & Modern</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Gratis Domain .com (1 Tahun)</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Optimasi Kecepatan & SEO Dasar</span></li>
+                        </ul>
+                    </div>
+                    <a href="#kontak" onclick="selectSku('SKU-PKG-01')" class="w-full py-3 rounded-xl glass-card hover:bg-copper hover:text-white font-heading font-semibold text-center text-sm transition-all">Pilih Paket Starter</a>
+                </div>
+
+                <!-- Paket Business -->
+                <div class="glass-panel rounded-2xl p-8 flex flex-col justify-between border-copper relative shadow-xl shadow-copper/10">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-copper text-white px-3 py-1 rounded-full font-mono text-xs font-bold">
+                        PALING DIMINATI
+                    </div>
+                    <div>
+                        <span class="font-mono text-xs text-gold block mb-2">SKU-PKG-02</span>
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">Business Advance</h3>
+                        <p class="font-sans text-xs text-mutedText mb-6">Solusi lengkap untuk perusahaan, instansi, dan toko online berkembang.</p>
+                        <div class="mb-6 pb-6 border-b border-slateBorder">
+                            <span class="font-heading font-extrabold text-3xl text-white">Rp 5.5jt</span>
+                            <span class="font-sans text-xs text-mutedText block mt-1">Satu kali pembayaran</span>
+                        </div>
+                        <ul class="space-y-3 font-sans text-sm text-mutedText mb-8">
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Halaman & Katalog Tak Terbatas</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Fitur 3D Mockup / Animasi Custom</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Integrasi E-Commerce / Pembayaran</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>SEO On-Page & Keamanan Tingkat Lanjut</span></li>
+                        </ul>
+                    </div>
+                    <a href="#kontak" onclick="selectSku('SKU-PKG-02')" class="w-full py-3 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center text-sm transition-all shadow-lg shadow-copper/25">Pilih Paket Business</a>
+                </div>
+
+                <!-- Paket Enterprise -->
+                <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                    <div>
+                        <span class="font-mono text-xs text-mutedText block mb-2">SKU-PKG-03</span>
+                        <h3 class="font-heading font-bold text-xl text-white mb-2">Enterprise Bespoke</h3>
+                        <p class="font-sans text-xs text-mutedText mb-6">Sistem web kustom skala besar, aplikasi SaaS, dan integrasi API khusus.</p>
+                        <div class="mb-6 pb-6 border-b border-slateBorder">
+                            <span class="font-heading font-extrabold text-3xl text-white">Custom</span>
+                            <span class="font-sans text-xs text-mutedText block mt-1">Berdasarkan tingkat kerumitan</span>
+                        </div>
+                        <ul class="space-y-3 font-sans text-sm text-mutedText mb-8">
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Arsitektur Full-Stack Kustom</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Database & Manajemen Klien Khusus</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Dukungan Teknis Prioritas 24/7</span></li>
+                            <li class="flex items-center space-x-3"><span class="text-copper">✓</span> <span>Garansi Performa & Keamanan Penuh</span></li>
+                        </ul>
+                    </div>
+                    <a href="#kontak" onclick="selectSku('SKU-PKG-03')" class="w-full py-3 rounded-xl glass-card hover:bg-copper hover:text-white font-heading font-semibold text-center text-sm transition-all">Konsultasikan Kebutuhan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TENTANG KAMI -->
+    <section id="tentang" class="py-24 border-t border-slateBorder/60 bg-slateDark/30">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-6 space-y-6">
+                <span class="font-mono text-xs text-copper tracking-widest uppercase block">TENTANG YUDHA STUDIO</span>
+                <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Keahlian Rekayasa & Estetika Visual</h2>
+                <p class="font-sans text-mutedText text-sm sm:text-base leading-relaxed">
+                    YUDHA STUDIO didirikan dengan komitmen untuk menghadirkan karya digital berkualitas tinggi. Kami percaya bahwa website bukan sekadar halaman informasi, melainkan representasi utama kredibilitas dan mesin pertumbuhan bisnis Anda di era digital.
+                </p>
+            </div>
+            <div class="lg:col-span-6">
+                <div class="glass-panel p-8 rounded-2xl border border-slateBorder space-y-6">
+                    <h3 class="font-heading font-bold text-xl text-white">Komitmen Layanan Kami</h3>
+                    <div class="space-y-4 font-sans text-sm text-mutedText">
+                        <div class="flex items-start space-x-3">
+                            <span class="text-copper font-bold text-lg">01</span>
+                            <div>
+                                <strong class="text-white block">Ketepatan Waktu Pengerjaan</strong>
+                                <span>Proyek diselesaikan sesuai estimasi jadwal yang disepakati dengan laporan berkala.</span>
                             </div>
-                            <h2 class="text-2xl sm:text-4xl font-black text-slate-900 leading-tight">
-                                YUDHA STUDIO — Edisi Burger & Fast Casual
-                            </h2>
-                            <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
-                                Dirancang khusus untuk bisnis kuliner modern berbasis profesional design, kedai burger, kafe, hingga <em>cloud kitchen</em>.
-                            </p>
-                            <button onclick="bukaModalPesan(11)" class="btn-3d bg-orange-600 hover:bg-orange-700 text-white font-extrabold px-6 py-3.5 rounded-2xl text-sm shadow-lg shadow-orange-600/30 flex items-center gap-2">
-                                <span>Pesan Template #11 Sekarang</span>
-                            </button>
+                        </div>
+                        <div class="flex items-start space-x-3">
+                            <span class="text-copper font-bold text-lg">02</span>
+                            <div>
+                                <strong class="text-white block">Revisi Fleksibel</strong>
+                                <span>Kami mendengarkan masukan Anda hingga detail visual dan fungsionalitas sempurna.</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Section Katalog 17 Template -->
-        <section id="katalog" class="py-16 px-4 sm:px-6 bg-white/90 backdrop-blur-md">
-            <div class="max-w-7xl mx-auto">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
+    <!-- KONTAK / FORMULIR PEMESANAN -->
+    <section id="kontak" class="py-24 border-t border-slateBorder/60">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="max-w-3xl mx-auto glass-panel p-8 sm:p-12 rounded-2xl border border-slateBorder shadow-2xl">
+                <div class="text-center mb-10">
+                    <span class="font-mono text-xs text-copper tracking-widest uppercase block mb-2">MULAI PROYEK ANDA</span>
+                    <h2 class="font-heading font-extrabold text-3xl sm:text-4xl tracking-tight">Hubungi YUDHA STUDIO</h2>
+                    <p class="font-sans text-mutedText text-sm mt-2">Isi formulir di bawah atau hubungi kami langsung via WhatsApp untuk melihat demo penuh & konsultasi cepat.</p>
+                </div>
+
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Nama Lengkap</label>
+                            <input type="text" id="name" required class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors" placeholder="Masukkan nama Anda">
+                        </div>
+                        <div>
+                            <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Nomor WhatsApp</label>
+                            <input type="tel" id="phone" required class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors" placeholder="Contoh: 081234567890">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Pilih Katalog / Layanan (SKU)</label>
+                            <select id="service" class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors">
+                                <option value="YS-PRJ-001">YS-PRJ-001 - Executive Company Profile</option>
+                                <option value="YS-PRJ-002">YS-PRJ-002 - Advanced E-Commerce Store</option>
+                                <option value="YS-PRJ-003">YS-PRJ-003 - SaaS Web Application</option>
+                                <option value="SKU-PKG-01">SKU-PKG-01 - Paket Starter Professional</option>
+                                <option value="SKU-PKG-02">SKU-PKG-02 - Paket Business Advance</option>
+                                <option value="CUSTOM-DESIGN">Referensi Daftar Design (YS-DSN-001 s/d 020)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Kode Promo (Opsional)</label>
+                            <input type="text" id="promo" value="YUDHASTUDIO26" class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors">
+                        </div>
+                    </div>
+
                     <div>
-                        <span class="text-xs font-bold uppercase tracking-widest text-red-600">ARSIP LENGKAP 2026</span>
-                        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 mt-1">Katalog 17 Template Website</h2>
+                        <label class="block font-heading text-xs font-semibold uppercase tracking-wider text-mutedText mb-2">Detail Kebutuhan / Pesan</label>
+                        <textarea id="message" rows="4" required class="w-full bg-slateDark border border-slateBorder rounded-xl px-4 py-3 text-alabaster font-sans text-sm focus:outline-none focus:border-copper transition-colors" placeholder="Ceritakan konsep website yang ingin Anda buat atau minta akses full demo..."></textarea>
                     </div>
-                    <div class="relative w-full md:w-72">
-                        <input type="text" id="input-cari" placeholder="Cari nama atau kategori..." 
-                            class="w-full bg-white/90 backdrop-blur-sm border border-slate-300 focus:border-red-500 rounded-xl px-4 py-3 text-sm text-slate-900 outline-none shadow-sm">
-                    </div>
-                </div>
-                <div id="grid-katalog" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 perspective-container"></div>
-            </div>
-        </section>
 
-        <footer class="border-t border-slate-200 py-14 px-4 sm:px-6 text-center bg-white/95 backdrop-blur-md">
-            <div class="max-w-7xl mx-auto space-y-4">
-                <h2 class="text-2xl font-black text-slate-900">Ingin Konsultasi Pesanan Khusus?</h2>
-                <div>
-                    <a id="link-wa-footer" class="btn-3d inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold px-8 py-4 rounded-2xl text-sm shadow-lg shadow-emerald-600/20" href="#" target="_blank">
-                        Chat via WhatsApp Langsung
-                    </a>
-                </div>
-                <div class="text-xs text-slate-400 pt-6">© 2026 YUDHA STUDIO. Seluruh Hak Cipta Dilindungi.</div>
-            </div>
-        </footer>
-    </div>
-
-    <!-- Modal Pemesanan -->
-    <div id="modal-pemesanan" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md">
-        <div class="bg-white border border-slate-200 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col">
-            <div class="px-6 py-4 bg-slate-50 border-b border-slate-200 flex items-center justify-between">
-                <h3 class="text-lg font-black text-slate-900">Pesan Website — YUDHA STUDIO</h3>
-                <button onclick="tutupModal()" class="w-9 h-9 rounded-xl bg-slate-200 hover:bg-slate-300 font-bold">✕</button>
-            </div>
-            <div class="p-6 overflow-y-auto space-y-6">
-                <div id="daftar-item-modal" class="space-y-2.5"></div>
-                <form id="form-order" onsubmit="kirimPesanan(event)" class="space-y-4">
-                    <input type="text" id="input-nama" required placeholder="Nama Lengkap" class="w-full border rounded-xl px-4 py-3 text-sm">
-                    <input type="text" id="input-kontak" required placeholder="Nomor WhatsApp" class="w-full border rounded-xl px-4 py-3 text-sm">
-                    <button type="submit" class="w-full bg-emerald-600 text-white font-extrabold py-4 rounded-2xl text-sm">Kirim ke WhatsApp</button>
+                    <button type="submit" class="w-full py-4 rounded-xl bg-copper hover:bg-copper/90 text-white font-heading font-semibold text-center text-sm transition-all shadow-lg shadow-copper/25 flex items-center justify-center space-x-2">
+                        <span>Kirim Konsultasi via WhatsApp</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
                 </form>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Skrip Utama Website -->
+    <!-- FOOTER -->
+    <footer class="border-t border-slateBorder bg-slateDark/60 py-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-slateDark to-obsidian border border-gold/40 flex items-center justify-center text-gold font-heading font-bold text-sm">
+                    Y
+                </div>
+                <span class="font-heading font-bold text-lg text-white">YUDHA STUDIO</span>
+            </div>
+            <p class="font-sans text-xs text-mutedText text-center">
+                &copy; 2026 YUDHA STUDIO. Seluruh hak cipta dilindungi undang-undang. Jasa Pembuatan Website Profesional.
+            </p>
+            <div class="flex space-x-6 font-mono text-xs text-mutedText">
+                <a href="#beranda" class="hover:text-alabaster">Privasi</a>
+                <a href="#beranda" class="hover:text-alabaster">Ketentuan</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Skrip JavaScript & Library 3D Tilt -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            if (window.lucide) lucide.createIcons();
-            document.getElementById("link-wa-footer").href = `https://wa.me/${NOMOR_WHATSAPP}?text=` + encodeURIComponent("Halo Yudha Studio, saya ingin berkonsultasi mengenai pembuatan website.");
-            renderKatalog();
+        // 1. Render 20 Bingkai Katalog Desain Otomatis
+        const framesGrid = document.getElementById('design-frames-grid');
+        if (framesGrid) {
+            let framesHTML = '';
+            for (let i = 1; i <= 20; i++) {
+                const num = String(i).padStart(2, '0');
+                const code = `YS-DSN-0${num}`;
+                framesHTML += `
+                <div class="glass-card rounded-xl p-4 flex flex-col justify-between group">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-mono text-xs text-copper bg-copper/10 px-2.5 py-1 rounded border border-copper/20">${code}</span>
+                            <span class="font-mono text-[10px] text-mutedText">Slot ${num}</span>
+                        </div>
+                        <div class="h-44 rounded-lg bg-[#090A0D] mb-3 overflow-hidden relative border border-slateBorder flex flex-col">
+                            <div class="h-5 bg-[#15171B] border-b border-slateBorder/80 px-2.5 flex items-center justify-between">
+                                <div class="flex space-x-1">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-red-500/70"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-yellow-500/70"></span>
+                                    <span class="w-1.5 h-1.5 rounded-full bg-green-500/70"></span>
+                                </div>
+                                <span class="font-mono text-[8px] text-mutedText">preview-${num}.yudhastudio.id</span>
+                            </div>
+                            <div class="flex-1 flex flex-col items-center justify-center p-4 text-center border-2 border-dashed border-slateBorder/50 m-2 rounded">
+                                <span class="font-mono text-xs text-gold/80">BINGKAI KATALOG ${num}</span>
+                                <span class="font-sans text-[10px] text-mutedText mt-1">Area Gambar / Pratinjau UI</span>
+                            </div>
+                        </div>
+                        <h3 class="font-heading font-bold text-base text-white">Referensi Desain #${num}</h3>
+                    </div>
+                    <div class="pt-3 mt-3 border-t border-slateBorder/70 flex items-center justify-between">
+                        <span class="font-mono text-[11px] text-mutedText">Siap Kustomisasi</span>
+                        <a href="#kontak" onclick="selectCustomSku('${code}')" class="text-xs font-mono text-copper hover:underline">Pilih &rarr;</a>
+                    </div>
+                </div>`;
+            }
+            framesGrid.innerHTML = framesHTML;
+        }
+
+        // 2. Inisialisasi Efek 3D Tilt pada Kartu
+        document.addEventListener("DOMContentLoaded", function() {
+            VanillaTilt.init(document.querySelectorAll(".glass-card"), {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.12,
+                scale: 1.02
+            });
         });
 
-        const katalogData = [
-            { id: 1, nama: "NEXTGEN", subjudul: "Teknologi & Rekayasa Digital", kategori: "Teknologi & Profesional Design", tema: "Clean Tech Minimalist", hargaPasar: 4000000, hargaStudio: 3800000, keunggulan: ["Hero section simetris.", "Kontras tinggi."], mockup: `<div class="h-32 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover"></div>` },
-            { id: 2, nama: "NEXUS", subjudul: "Agensi Kreatif & Strategi Brand", kategori: "Kreatif & Galeri", tema: "Immersive Light Crimson", hargaPasar: 5000000, hargaStudio: 4750000, keunggulan: ["Visual latar bersih.", "Layanan bernomor."], mockup: `<div class="h-32 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover"></div>` },
-            { id: 11, nama: "YUDHA STUDIO (Burger)", subjudul: "Restoran & Pemesanan Online", kategori: "Kuliner & Retail", tema: "Warm Cream & Orange", hargaPasar: 4800000, hargaStudio: 4560000, unggulan: true, keunggulan: ["Menu 3 kolom.", "Direct order bag."], mockup: `<div class="h-32 rounded-xl overflow-hidden"><img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=600&q=80" class="w-full h-full object-cover"></div>` }
-        ];
+        // 3. Fungsi Auto-Isi Form Kontak
+        function selectSku(skuCode) {
+            const selectEl = document.getElementById('service');
+            if (selectEl) selectEl.value = skuCode;
+        }
 
-        let keranjang = [];
-        let kategoriAktif = "Semua";
-        let kataKunci = "";
+        function selectCustomSku(dsnCode) {
+            const selectEl = document.getElementById('service');
+            const messageEl = document.getElementById('message');
+            if (selectEl) selectEl.value = 'CUSTOM-DESIGN';
+            if (messageEl) messageEl.value = `Halo YUDHA STUDIO, saya tertarik dengan referensi desain kode: ${dsnCode}. Mohon info detail dan demo lengkapnya.`;
+        }
 
-        function formatRupiah(angka) { return "Rp " + angka.toLocaleString("id-ID"); }
+        // 4. Generator 120 Partikel Bara Api Kecil
+        const container = document.getElementById('fireContainer');
+        const sparkCount = 120;
 
-        function renderKatalog() {
-            const grid = document.getElementById("grid-katalog");
-            if (!grid) return;
-            grid.innerHTML = "";
-            katalogData.forEach(item => {
-                const card = document.createElement("article");
-                card.className = "bg-white border rounded-3xl p-5 shadow-sm";
-                card.innerHTML = `
-                    <h3 class="text-lg font-bold">${item.nama}</h3>
-                    <p class="text-xs text-slate-500">${item.subjudul}</p>
-                    <div class="mt-4 font-black text-red-600">${formatRupiah(item.hargaStudio)}</div>
-                    <button onclick="bukaModalPesan(${item.id})" class="mt-3 w-full bg-red-500 text-white py-2 rounded-xl text-xs font-bold">Pesan</button>
-                `;
-                grid.appendChild(card);
+        for (let i = 0; i < sparkCount; i++) {
+            createSpark();
+        }
+
+        function createSpark() {
+            const spark = document.createElement('div');
+            spark.classList.add('spark');
+
+            const size = Math.random() * 3 + 1.5;
+            spark.style.width = `${size}px`;
+            spark.style.height = `${size}px`;
+            spark.style.left = `${Math.random() * 100}vw`;
+
+            const duration = Math.random() * 5 + 2.5;
+            spark.style.animationDuration = `${duration}s`;
+
+            const delay = Math.random() * 6;
+            spark.style.animationDelay = `${delay}s`;
+
+            const randomX = `${(Math.random() - 0.5) * 150}px`;
+            spark.style.setProperty('--random-x', randomX);
+
+            spark.addEventListener('animationiteration', () => {
+                spark.style.left = `${Math.random() * 100}vw`;
+                const newRandomX = `${(Math.random() - 0.5) * 150}px`;
+                spark.style.setProperty('--random-x', newRandomX);
             });
+
+            container.appendChild(spark);
         }
 
-        function bukaModalPesan(id) {
-            const p = katalogData.find(x => x.id === id);
-            if (p && !keranjang.some(i => i.id === id)) keranjang.push(p);
-            document.getElementById("modal-pemesanan").classList.remove("hidden");
-            document.getElementById("modal-pemesanan").classList.add("flex");
-        }
+        // 5. Mobile Menu Toggle
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        function tutupModal() {
-            document.getElementById("modal-pemesanan").classList.add("hidden");
-            document.getElementById("modal-pemesanan").classList.remove("flex");
-        }
-
-        function kirimPesanan(e) {
+        // 6. WhatsApp Form Handler
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            window.open(`https://wa.me/${NOMOR_WHATSAPP}?text=Halo%20Yudha%20Studio,%20saya%20ingin%20memesan%20website.`, "_blank");
-            tutupModal();
-        }
-    </script>
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const service = document.getElementById('service').value;
+            const promo = document.getElementById('promo').value;
+            const message = document.getElementById('message').value;
 
-    <!-- Skrip Animasi Api 3D (Background) -->
-    <script>
-    (function(){
-        var c = document.getElementById("bg"),
-            x = c.getContext("2d"), 
-            W, H, D, 
-            N = 4000, 
-            ps = [], 
-            sparks = [], 
-            numSparks = 200, 
-            cur = 0, 
-            ph = 0, 
-            t0 = performance.now(), 
-            mx = -999, 
-            my = -999, 
-            fr = 0, 
-            bst = 0, 
-            tch = 0;
-
-        function size(){
-            D = Math.min(devicePixelRatio || 1, 2);
-            W = innerWidth;
-            H = innerHeight;
-            c.width = W * D;
-            c.height = H * D;
-            x.setTransform(D, 0, 0, D, 0, 0);
+            const text = `Halo YUDHA STUDIO,%0A%0ASaya ingin memesan/melihat full demo untuk layanan web:%0A- Nama: ${name}%0A- No WhatsApp: ${phone}%0A- Pilihan SKU: ${service}%0A- Kode Promo: ${promo}%0A- Pesan: ${message}`;
             
-            while(ps.length < N) {
-                ps.push({
-                    x: Math.random() * W, y: Math.random() * H, z: 0,
-                    vx: 0, vy: 0, vz: 0, s: 1.2 + Math.random() * 1.1, i: ps.length
-                });
-            }
-            ps.length = N;
-
-            while(sparks.length < numSparks) {
-                sparks.push({
-                    x: Math.random() * W, y: Math.random() * H,
-                    vy: -(1 + Math.random() * 2), vx: (Math.random() - 0.5),
-                    s: 0.8 + Math.random() * 1.2, alpha: 0.3 + Math.random() * 0.4, hue: 15 + Math.random() * 30
-                });
-            }
-        }
-
-        function frame(now){
-            var t = (now - t0) / 1000;
-            x.fillStyle = "#FFFFFF";
-            x.fillRect(0, 0, W, H);
-            
-            for(var s = 0; s < numSparks; s++){
-                var spk = sparks[s];
-                spk.y += spk.vy;
-                spk.x += spk.vx + Math.sin(t + s) * 0.3;
-                if(spk.y < -10) { spk.y = H + 10; spk.x = Math.random() * W; }
-                x.fillStyle = "hsla(" + spk.hue + ", 100%, 50%, " + spk.alpha + ")";
-                x.fillRect(spk.x, spk.y, spk.s, spk.s * 1.5);
-            }
-
-            for(var i = 0; i < N; i++){
-                var p = ps[i];
-                p.x += (Math.sin(t + p.i) * 0.5);
-                p.y += (Math.cos(t + p.i) * 0.5);
-                if(p.x < 0) p.x = W; else if(p.x > W) p.x = 0;
-                if(p.y < 0) p.y = H; else if(p.y > H) p.y = 0;
-
-                x.fillStyle = "hsla(5, 90%, 50%, 0.6)";
-                x.fillRect(p.x, p.y, p.s, p.s);
-            }
-            requestAnimationFrame(frame);
-        }
-
-        addEventListener("resize", size);
-        size();
-        requestAnimationFrame(frame);
-    })();
+            const waUrl = `https://wa.me/6281234567890?text=${text}`;
+            window.open(waUrl, '_blank');
+        });
     </script>
 </body>
 </html>
